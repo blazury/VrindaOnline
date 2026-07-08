@@ -53,7 +53,7 @@ export default function Home() {
                 width={220}
                 height={220}
                 priority
-                className="object-contain animate-subtle-bounce"
+                className="object-contain animate-bounce-once"
               />
             </div>
 

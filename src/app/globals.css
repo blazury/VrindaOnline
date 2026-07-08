@@ -57,15 +57,27 @@ body {
   background: var(--earth-brown);
 }
 
-@keyframes subtle-bounce {
-  0%, 100% {
-    transform: translateY(0);
+@keyframes bounce-once {
+  0% {
+    transform: translateY(-100px);
+    opacity: 0;
   }
   50% {
-    transform: translateY(-5px);
+    transform: translateY(15px);
+    opacity: 1;
+  }
+  75% {
+    transform: translateY(-8px);
+  }
+  90% {
+    transform: translateY(3px);
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
   }
 }
 
-.animate-subtle-bounce {
-  animation: subtle-bounce 3s ease-in-out infinite;
+.animate-bounce-once {
+  animation: bounce-once 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
