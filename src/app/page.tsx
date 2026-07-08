@@ -46,12 +46,12 @@ export default function Home() {
         <section className="min-h-[75vh] flex flex-col justify-center max-w-5xl mx-auto">
           <div className="relative text-center bg-white/80 border border-[#8c6239]/10 p-10 md:p-16 rounded-3xl shadow-xl space-y-6 backdrop-blur-md">
             {/* Replicated ISKCON Tag / Keychain */}
-            <div className="absolute -top-8 sm:-top-10 md:-top-12 lg:-top-16 -right-5 sm:-right-6 md:-right-8 lg:-right-12 z-30 w-[75px] sm:w-[95px] md:w-[150px] lg:w-[190px] pointer-events-none select-none drop-shadow-md">
+            <div className="absolute top-2.5 sm:top-3 md:top-4 lg:top-6 -right-4 sm:-right-5 md:-right-6 lg:-right-10 z-30 w-[90px] sm:w-[110px] md:w-[170px] lg:w-[210px] pointer-events-none select-none drop-shadow-md">
               <Image 
                 src="/tag.png" 
                 alt="Vrnda Tag" 
-                width={190}
-                height={190}
+                width={210}
+                height={210}
                 priority
                 className="object-contain animate-bounce-once"
               />
