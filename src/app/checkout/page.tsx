@@ -103,9 +103,9 @@ export default function CheckoutPage() {
       const { razorpayOrder } = data;
 
       // 2. Configure Razorpay Standard Checkout in Test Mode
-      // We deliberately omit order_id in order to run checkout in Standard Test Mode bypassing strict verification, matching the working breakfast combo checkout settings.
+      // We deliberately omit order_id in order to run checkout in Standard Test Mode bypassing strict verification.
       const options = {
-        key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || "rzp_test_mockkey",
+        key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || "rzp_test_SzDqCnXlPoPsFg",
         amount: razorpayOrder.amount,
         currency: razorpayOrder.currency,
         name: "Vṛndā Organic Store",
