@@ -134,8 +134,9 @@ export default function CheckoutPage() {
             decrementStock(item.id);
           });
 
-          // Success - clear cart and redirect
+          // Success - clear cart, refresh route and redirect
           clearCart();
+          router.refresh();
           router.push(
             `/confirmation?name=${encodeURIComponent(formData.name)}&plan=Product%20Order&amount=${cartSubtotal}&paymentId=${paymentId}`
           );
