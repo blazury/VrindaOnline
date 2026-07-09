@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useTransition } from "react";
 import Image from "next/image";
-import { getAdminData, updateStockAction } from "./actions";
+import { getAdminData, updateProductAction } from "./actions";
 import { Plus, Minus, Lock, Package, ListOrdered, RefreshCw, LogOut } from "lucide-react";
 
 export default function AdminPage() {
@@ -13,6 +13,9 @@ export default function AdminPage() {
   const [orders, setOrders] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [isPending, startTransition] = useTransition();
+
+  // Local state for pricing, discount, and stock inputs
+  const [editStates, setEditStates] = useState<Record<string, { price: number; discount: number; stock: number }>>({});
 
   useEffect(() => {
     const auth = sessionStorage.getItem("vrnda_admin_auth");
@@ -31,6 +34,17 @@ export default function AdminPage() {
     if (data.success) {
       setProducts(data.products || []);
       setOrders(data.orders || []);
+      
+      // Initialize edit states
+      const initialStates: any = {};
+      (data.products || []).forEach((p: any) => {
+        initialStates[p.slug] = {
+          price: p.price,
+          discount: p.discountPercentage ?? 0,
+          stock: p.stockQuantity
+        };
+      });
+      setEditStates(initialStates);
     } else {
       setError(data.error || "Failed to load database records.");
     }
@@ -54,22 +68,44 @@ export default function AdminPage() {
     sessionStorage.removeItem("vrnda_admin_auth");
   };
 
-  const handleAdjustStock = async (slug: string, currentStock: number, diff: number) => {
-    const newStock = Math.max(0, currentStock + diff);
-    
-    // Optimistic UI update
-    setProducts(prev => 
-      prev.map(p => p.slug === slug ? { ...p, stockQuantity: newStock } : p)
-    );
+  const handleFieldChange = (slug: string, field: "price" | "discount" | "stock", value: number) => {
+    setEditStates((prev) => ({
+      ...prev,
+      [slug]: {
+        ...prev[slug],
+        [field]: value
+      }
+    }));
+  };
+
+  const handleAdjustStockLocal = (slug: string, diff: number) => {
+    setEditStates((prev) => {
+      const current = prev[slug] || { price: 0, discount: 0, stock: 0 };
+      return {
+        ...prev,
+        [slug]: {
+          ...current,
+          stock: Math.max(0, current.stock + diff)
+        }
+      };
+    });
+  };
+
+  const handleSaveProduct = async (slug: string) => {
+    const state = editStates[slug];
+    if (!state) return;
 
     startTransition(async () => {
-      const res = await updateStockAction(slug, newStock);
-      if (!res.success) {
-        // Revert on failure
-        setProducts(prev => 
-          prev.map(p => p.slug === slug ? { ...p, stockQuantity: currentStock } : p)
-        );
-        alert(res.error || "Failed to update stock quantity.");
+      const res = await updateProductAction(slug, {
+        price: Number(state.price),
+        discountPercentage: Number(state.discount),
+        stockQuantity: Number(state.stock)
+      });
+      if (res.success) {
+        alert(`${products.find(p => p.slug === slug)?.name || slug} details updated successfully!`);
+        fetchData();
+      } else {
+        alert(res.error || "Failed to update product details.");
       }
     });
   };
@@ -203,50 +239,72 @@ export default function AdminPage() {
 
               <div className="divide-y divide-[#8c6239]/10">
                 {products.map((product) => (
-                  <div key={product.slug} className="py-4 flex items-center justify-between gap-4 first:pt-0 last:pb-0">
-                    <div className="space-y-1">
-                      <h4 className="text-sm font-bold text-[#2c2c2c]">
-                        {product.name}
-                      </h4>
-                      <div className="flex items-center gap-3 text-xs">
-                        <span className="text-[#8c6239] font-bold">
-                          ₹ {product.price.toLocaleString("en-IN")}
-                        </span>
-                        <span className="text-gray-300">|</span>
-                        <span className="text-gray-400 select-none">
-                          slug: {product.slug}
-                        </span>
+                  <div key={product.slug} className="py-5 flex flex-col gap-3 border-b border-[#8c6239]/10 last:border-b-0 last:pb-0 first:pt-0">
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <h4 className="text-sm font-bold text-[#2c2c2c]">{product.name}</h4>
+                        <span className="text-[10px] text-gray-400 select-none block mt-0.5 font-mono">slug: {product.slug}</span>
                       </div>
+                      
+                      {/* Save button */}
+                      <button
+                        onClick={() => handleSaveProduct(product.slug)}
+                        disabled={isPending}
+                        className="px-3.5 py-1.5 bg-[#1f3f21] hover:bg-[#8c6239] text-white text-[10px] font-bold uppercase tracking-wider rounded-xl transition-colors duration-200 disabled:opacity-50"
+                      >
+                        {isPending ? "Saving..." : "Save"}
+                      </button>
                     </div>
 
-                    {/* Stock Adjustment Controls */}
-                    <div className="flex items-center gap-2">
-                      <button
-                        onClick={() => handleAdjustStock(product.slug, product.stockQuantity, -1)}
-                        disabled={product.stockQuantity <= 0 || isPending}
-                        className="p-2 border border-[#8c6239]/15 bg-[#faf8f5] rounded-xl hover:bg-red-50 hover:text-red-700 transition-colors disabled:opacity-30 disabled:pointer-events-none"
-                        aria-label="Decrease Stock"
-                      >
-                        <Minus className="w-3.5 h-3.5" />
-                      </button>
-
-                      <div className="w-12 text-center">
-                        <span className={`text-sm font-extrabold ${product.stockQuantity === 0 ? "text-red-600 animate-pulse" : "text-[#1f3f21]"}`}>
-                          {product.stockQuantity}
-                        </span>
-                        <span className="block text-[8px] uppercase tracking-wider text-[#2c2c2c]/40 font-bold mt-0.5">
-                          Stock
-                        </span>
+                    <div className="grid grid-cols-3 gap-3">
+                      {/* Price input */}
+                      <div className="space-y-1">
+                        <label className="block text-[8px] uppercase tracking-wider text-[#2c2c2c]/40 font-bold">Base Price (₹)</label>
+                        <input
+                          type="number"
+                          value={editStates[product.slug]?.price ?? product.price}
+                          onChange={(e) => handleFieldChange(product.slug, "price", parseFloat(e.target.value) || 0)}
+                          className="w-full px-2.5 py-1.5 bg-[#faf8f5] border border-[#8c6239]/15 rounded-xl text-xs font-semibold focus:outline-none focus:border-[#1f3f21] text-[#2c2c2c]"
+                          min="0"
+                        />
                       </div>
 
-                      <button
-                        onClick={() => handleAdjustStock(product.slug, product.stockQuantity, 1)}
-                        disabled={isPending}
-                        className="p-2 border border-[#8c6239]/15 bg-[#faf8f5] rounded-xl hover:bg-green-50 hover:text-green-700 transition-colors disabled:opacity-30"
-                        aria-label="Increase Stock"
-                      >
-                        <Plus className="w-3.5 h-3.5" />
-                      </button>
+                      {/* Discount percentage input */}
+                      <div className="space-y-1">
+                        <label className="block text-[8px] uppercase tracking-wider text-[#2c2c2c]/40 font-bold">Discount (%)</label>
+                        <input
+                          type="number"
+                          value={editStates[product.slug]?.discount ?? product.discountPercentage ?? 0}
+                          onChange={(e) => handleFieldChange(product.slug, "discount", parseInt(e.target.value) || 0)}
+                          className="w-full px-2.5 py-1.5 bg-[#faf8f5] border border-[#8c6239]/15 rounded-xl text-xs font-semibold focus:outline-none focus:border-[#1f3f21] text-[#2c2c2c]"
+                          min="0"
+                          max="100"
+                        />
+                      </div>
+
+                      {/* Stock Quantity Adjuster */}
+                      <div className="space-y-1">
+                        <label className="block text-[8px] uppercase tracking-wider text-[#2c2c2c]/40 font-bold">Stock Qty</label>
+                        <div className="flex items-center border border-[#8c6239]/15 rounded-xl bg-[#faf8f5] overflow-hidden">
+                          <button
+                            onClick={() => handleAdjustStockLocal(product.slug, -1)}
+                            className="p-1.5 hover:bg-[#1f3f21]/5 text-[#2c2c2c]/70 hover:text-red-700 transition-colors"
+                            type="button"
+                          >
+                            <Minus className="w-3.5 h-3.5" />
+                          </button>
+                          <span className="flex-grow text-center text-xs font-extrabold text-[#1f3f21]">
+                            {editStates[product.slug]?.stock ?? product.stockQuantity}
+                          </span>
+                          <button
+                            onClick={() => handleAdjustStockLocal(product.slug, 1)}
+                            className="p-1.5 hover:bg-[#1f3f21]/5 text-[#2c2c2c]/70 hover:text-green-700 transition-colors"
+                            type="button"
+                          >
+                            <Plus className="w-3.5 h-3.5" />
+                          </button>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 ))}

@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { Cormorant_Garamond, Inter } from "next/font/google";
 import { ArrowLeft, MapPin, Hammer, Sparkles } from "lucide-react";
 import BuyNowButton from "@/components/BuyNowButton";
+import { getProductBySlug } from "@/lib/db";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -142,10 +143,16 @@ interface Props {
 export default async function ProductPage({ params }: Props) {
   const { slug } = await params;
   const product = products[slug];
-
   if (!product) {
     notFound();
   }
+
+  const dbProduct = await getProductBySlug(slug);
+  const currentPrice = dbProduct ? dbProduct.price : product.price;
+  const discountPercentage = dbProduct ? dbProduct.discountPercentage : 0;
+  const finalPrice = discountPercentage > 0
+    ? Math.round(currentPrice - (currentPrice * (discountPercentage / 100)))
+    : currentPrice;
 
   return (
     <main 
@@ -298,6 +305,11 @@ export default async function ProductPage({ params }: Props) {
                   style={{ fontFamily: "var(--font-cormorant), serif" }}
                 >
                   {product.title}
+                  {discountPercentage > 0 && (
+                    <span className="inline-block bg-[#1f3f21] text-white text-[9px] font-sans font-bold uppercase tracking-wider px-2.5 py-1 rounded-xl ml-3 align-middle">
+                      {discountPercentage}% OFF
+                    </span>
+                  )}
                 </h1>
               </div>
 
@@ -349,12 +361,29 @@ export default async function ProductPage({ params }: Props) {
             <div className="border-t border-[#8c6239]/10 pt-6 flex items-center justify-between gap-6 font-semibold">
               <div>
                 <span className="text-[9px] font-bold uppercase text-[#2c2c2c]/50 block">Cooperative Price</span>
-                <span className="font-serif text-2xl font-bold text-[#1f3f21]">₹ {product.price.toLocaleString("en-IN")} <span className="text-xs text-[#2c2c2c]/60 font-sans font-medium">/ unit</span></span>
+                {discountPercentage > 0 ? (
+                  <div className="flex flex-col">
+                    <span className="text-[10px] line-through text-[#2c2c2c]/40 font-sans font-medium block">
+                      ₹ {currentPrice.toLocaleString("en-IN")}
+                    </span>
+                    <span className="font-serif text-2xl font-bold text-[#1f3f21] -mt-0.5">
+                      ₹ {finalPrice.toLocaleString("en-IN")}{" "}
+                      <span className="text-xs text-[#2c2c2c]/60 font-sans font-medium">/ unit</span>
+                    </span>
+                  </div>
+                ) : (
+                  <span className="font-serif text-2xl font-bold text-[#1f3f21]">
+                    ₹ {currentPrice.toLocaleString("en-IN")}{" "}
+                    <span className="text-xs text-[#2c2c2c]/60 font-sans font-medium">/ unit</span>
+                  </span>
+                )}
               </div>
               <BuyNowButton 
                 id={slug}
                 name={product.title}
-                price={product.price}
+                price={finalPrice}
+                originalPrice={currentPrice}
+                discountPercentage={discountPercentage}
                 image={product.image}
               />
             </div>

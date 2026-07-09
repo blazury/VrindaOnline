@@ -7,10 +7,12 @@ interface BuyNowButtonProps {
   id: string;
   name: string;
   price: number;
+  originalPrice: number;
+  discountPercentage: number;
   image: string;
 }
 
-export default function BuyNowButton({ id, name, price, image }: BuyNowButtonProps) {
+export default function BuyNowButton({ id, name, price, originalPrice, discountPercentage, image }: BuyNowButtonProps) {
   const { addToCart, inventory } = useCart();
   const stock = inventory[id] ?? 1;
 
@@ -20,6 +22,8 @@ export default function BuyNowButton({ id, name, price, image }: BuyNowButtonPro
         id,
         name,
         price,
+        originalPrice,
+        discountPercentage,
         image
       });
     }

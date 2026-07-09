@@ -13,20 +13,20 @@ if (process.env.NODE_ENV === "production") {
 
 export { prisma };
 
-// Hardcoded fallback product data
 export interface ProductData {
   slug: string;
   name: string;
   price: number;
+  discountPercentage: number;
   stockQuantity: number;
 }
 
 export const defaultProducts: ProductData[] = [
-  { slug: "ghee", name: "Vedic A2 Ghee", price: 1250, stockQuantity: 1 },
-  { slug: "honey", name: "Raw Himalayan Honey", price: 850, stockQuantity: 1 },
-  { slug: "moringa", name: "Organic Moringa Leaf Powder", price: 450, stockQuantity: 1 },
-  { slug: "coconut-oil", name: "Cold Pressed Coconut Oil", price: 950, stockQuantity: 1 },
-  { slug: "premium-masala", name: "Premium Masala", price: 350, stockQuantity: 1 }
+  { slug: "ghee", name: "Vedic A2 Ghee", price: 1250, discountPercentage: 0, stockQuantity: 1 },
+  { slug: "honey", name: "Raw Himalayan Honey", price: 850, discountPercentage: 0, stockQuantity: 1 },
+  { slug: "moringa", name: "Organic Moringa Leaf Powder", price: 450, discountPercentage: 0, stockQuantity: 1 },
+  { slug: "coconut-oil", name: "Cold Pressed Coconut Oil", price: 950, discountPercentage: 0, stockQuantity: 1 },
+  { slug: "premium-masala", name: "Premium Masala", price: 350, discountPercentage: 0, stockQuantity: 1 }
 ];
 
 // Helper to seed database if empty
@@ -41,6 +41,7 @@ export async function seedProductsIfEmpty() {
             slug: prod.slug,
             name: prod.name,
             price: prod.price,
+            discountPercentage: prod.discountPercentage,
             stockQuantity: prod.stockQuantity
           }
         });
@@ -63,6 +64,7 @@ export async function getAllProducts(): Promise<ProductData[]> {
       slug: p.slug,
       name: p.name,
       price: p.price,
+      discountPercentage: p.discountPercentage,
       stockQuantity: p.stockQuantity
     }));
   } catch (error) {
@@ -83,6 +85,7 @@ export async function getProductBySlug(slug: string): Promise<ProductData | null
       slug: dbProduct.slug,
       name: dbProduct.name,
       price: dbProduct.price,
+      discountPercentage: dbProduct.discountPercentage,
       stockQuantity: dbProduct.stockQuantity
     };
   } catch (error) {
@@ -92,7 +95,7 @@ export async function getProductBySlug(slug: string): Promise<ProductData | null
   }
 }
 
-// Update product stock
+// Update product stock (kept for backward compatibility)
 export async function updateProductStock(slug: string, newStock: number): Promise<{ success: boolean; error?: string }> {
   try {
     await prisma.product.update({
@@ -102,6 +105,23 @@ export async function updateProductStock(slug: string, newStock: number): Promis
     return { success: true };
   } catch (error: any) {
     console.warn(`Failed to update DB stock for ${slug}:`, error);
+    return { success: false, error: error.message || String(error) };
+  }
+}
+
+// Update product details in DB (price, discount, stock)
+export async function updateProductInDb(
+  slug: string,
+  data: { price?: number; discountPercentage?: number; stockQuantity?: number }
+): Promise<{ success: boolean; error?: string }> {
+  try {
+    await prisma.product.update({
+      where: { slug },
+      data
+    });
+    return { success: true };
+  } catch (error: any) {
+    console.warn(`Failed to update DB product details for ${slug}:`, error);
     return { success: false, error: error.message || String(error) };
   }
 }

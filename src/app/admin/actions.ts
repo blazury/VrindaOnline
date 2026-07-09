@@ -52,3 +52,34 @@ export async function updateStockAction(slug: string, newStock: number) {
     return { success: false, error: error.message || "Error occurred while updating stock." };
   }
 }
+
+export async function updateProductAction(
+  slug: string,
+  data: { price?: number; discountPercentage?: number; stockQuantity?: number }
+) {
+  try {
+    const { updateProductInDb } = await import("@/lib/db");
+    
+    if (data.price !== undefined && data.price < 0) {
+      return { success: false, error: "Price cannot be negative." };
+    }
+    if (data.discountPercentage !== undefined && (data.discountPercentage < 0 || data.discountPercentage > 100)) {
+      return { success: false, error: "Discount percentage must be between 0 and 100." };
+    }
+    if (data.stockQuantity !== undefined && data.stockQuantity < 0) {
+      return { success: false, error: "Stock quantity cannot be negative." };
+    }
+
+    const result = await updateProductInDb(slug, data);
+    if (result.success) {
+      revalidatePath("/admin");
+      revalidatePath(`/products/${slug}`);
+      revalidatePath("/products");
+      return { success: true };
+    }
+    return { success: false, error: result.error || "Failed to update product details." };
+  } catch (error: any) {
+    console.error("Error updating product details:", error);
+    return { success: false, error: error.message || "Error occurred while updating product details." };
+  }
+}

@@ -155,13 +155,29 @@ export default function CartDrawer() {
 
                     {/* Price */}
                     <div className="text-right">
-                      <span className="text-xs font-bold text-[#8c6239]">
-                        ₹ {(item.price * item.quantity).toLocaleString("en-IN")}
-                      </span>
-                      {item.quantity > 1 && (
-                        <span className="block text-[9px] text-[#2c2c2c]/50 font-semibold mt-0.5">
-                          ₹ {item.price.toLocaleString("en-IN")} each
-                        </span>
+                      {item.discountPercentage > 0 ? (
+                        <div className="space-y-0.5">
+                          <span className="block text-[10px] line-through text-[#2c2c2c]/40 font-semibold">
+                            ₹ {(item.originalPrice * item.quantity).toLocaleString("en-IN")}
+                          </span>
+                          <span className="text-xs font-extrabold text-[#1f3f21]">
+                            ₹ {(item.price * item.quantity).toLocaleString("en-IN")}
+                          </span>
+                          <span className="block text-[8px] font-bold text-[#8c6239] uppercase tracking-wider">
+                            {item.discountPercentage}% OFF
+                          </span>
+                        </div>
+                      ) : (
+                        <div>
+                          <span className="text-xs font-bold text-[#8c6239]">
+                            ₹ {(item.price * item.quantity).toLocaleString("en-IN")}
+                          </span>
+                          {item.quantity > 1 && (
+                            <span className="block text-[9px] text-[#2c2c2c]/50 font-semibold mt-0.5">
+                              ₹ {item.price.toLocaleString("en-IN")} each
+                            </span>
+                          )}
+                        </div>
                       )}
                     </div>
                   </div>
