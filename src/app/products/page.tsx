@@ -34,7 +34,19 @@ export default function ProductsPage() {
         
         {/* Slide 1: Welcome & Overview */}
         <section className="h-screen flex flex-col justify-center px-6 pointer-events-auto">
-          <div className="max-w-3xl mx-auto w-full text-center bg-white/80 border border-[#8c6239]/10 p-10 md:p-16 rounded-3xl shadow-xl space-y-4 backdrop-blur-md">
+          <div className="relative max-w-3xl mx-auto w-full text-center bg-white/80 border border-[#8c6239]/10 p-10 md:p-16 rounded-3xl shadow-xl space-y-4 backdrop-blur-md">
+            {/* Replicated ISKCON Tag / Keychain */}
+            <div className="absolute top-2.5 sm:top-3 md:top-4 lg:top-6 -right-4 sm:-right-5 md:-right-6 lg:-right-10 z-30 w-[90px] sm:w-[110px] md:w-[170px] lg:w-[210px] pointer-events-none select-none drop-shadow-md">
+              <Image 
+                src="/tag.png" 
+                alt="Vrnda Tag" 
+                width={210}
+                height={210}
+                priority
+                className="object-contain animate-bounce-once"
+              />
+            </div>
+
             <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#8c6239] block">
               Scroll to explore
             </span>
