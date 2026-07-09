@@ -16,7 +16,8 @@ export default function CartDrawer() {
     updateQuantity, 
     removeFromCart, 
     cartSubtotal,
-    cartCount
+    cartCount,
+    inventory
   } = useCart();
   
   const drawerRef = useRef<HTMLDivElement>(null);
@@ -142,7 +143,10 @@ export default function CartDrawer() {
                       </span>
                       <button
                         onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                        className="p-1 px-2.5 hover:bg-[#1f3f21]/5 text-[#2c2c2c]/70 hover:text-[#1f3f21] transition-colors duration-200"
+                        disabled={item.quantity >= (inventory[item.id] ?? 1)}
+                        className={`p-1 px-2.5 hover:bg-[#1f3f21]/5 text-[#2c2c2c]/70 hover:text-[#1f3f21] transition-colors duration-200 ${
+                          item.quantity >= (inventory[item.id] ?? 1) ? "opacity-30 cursor-not-allowed pointer-events-none" : ""
+                        }`}
                         aria-label="Increase quantity"
                       >
                         <Plus className="w-3 h-3" />

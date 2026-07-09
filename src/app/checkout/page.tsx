@@ -29,7 +29,7 @@ const inter = Inter({
 
 export default function CheckoutPage() {
   const router = useRouter();
-  const { cartItems, cartSubtotal, clearCart } = useCart();
+  const { cartItems, cartSubtotal, clearCart, decrementStock } = useCart();
 
   const [formData, setFormData] = useState({
     name: "",
@@ -126,6 +126,11 @@ export default function CheckoutPage() {
                 amount: cartSubtotal
               }
             })
+          });
+
+          // Decrement stock quantities for all purchased items
+          cartItems.forEach((item) => {
+            decrementStock(item.id);
           });
 
           // Success - clear cart and redirect

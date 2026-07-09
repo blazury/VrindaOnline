@@ -28,6 +28,7 @@ interface ProductData {
   tagline: string;
   desc: string;
   price: number;
+  stockQuantity: number;
   nutrition: Record<string, string>;
 }
 
@@ -42,6 +43,7 @@ const products: Record<string, ProductData> = {
     tagline: "Golden elixir for gut-health, immunity, and memory reinforcement.",
     desc: "Our Vedic A2 Ghee is prepared strictly following the scriptures. Hand-churned at sunrise using curd rather than raw cream, this ghee contains healthy fatty acids and has high medicinal quality. Sourced from native Gir cows grazed on diverse organic pastureland.",
     price: 1250,
+    stockQuantity: 1,
     nutrition: {
       "Saturated Fat": "60g",
       "Butyric Acid": "4.5g",
@@ -59,6 +61,7 @@ const products: Record<string, ProductData> = {
     tagline: "Enzyme-active mountain honey collected by tribal foragers.",
     desc: "Harvested from wild hives in deep deciduous forests, this honey has rich multi-floral notes. Never heated, micro-filtered, or adulterated, it remains in its true biological state with active honeybee pollen, trace minerals, and vitamins intact.",
     price: 850,
+    stockQuantity: 1,
     nutrition: {
       "Carbohydrates": "82g",
       "Natural Sugars": "80g",
@@ -76,6 +79,7 @@ const products: Record<string, ProductData> = {
     tagline: "Superfood green powder packed with vitamins and essential minerals.",
     desc: "Made from fresh leaves of the miracle tree moringa. Handpicked at peak nutrient density, shade-dried to protect the chlorophyll, and finely milled into a pure superfood powder. Excellent for metabolic wellness and natural energy support.",
     price: 450,
+    stockQuantity: 1,
     nutrition: {
       "Protein": "27g",
       "Iron": "28mg",
@@ -93,6 +97,7 @@ const products: Record<string, ProductData> = {
     tagline: "Unrefined raw virgin oil rich in immune-boosting Lauric acid.",
     desc: "Extracted from sun-dried organic coconut meat using traditional heavy wood-presses. Never chemically bleached, deodorized, or refined, this oil retains its fresh tropical aroma and vital MCT nutrition suited for dietary and wellness practices.",
     price: 950,
+    stockQuantity: 1,
     nutrition: {
       "Lauric Acid": "49g",
       "Caprylic Acid": "8g",
@@ -110,6 +115,7 @@ const products: Record<string, ProductData> = {
     tagline: "Traditional stone-ground spice blend for aromatic culinary excellence.",
     desc: "Vṛndā Premium Masala is an artisanal blend of hand-selected whole spices, roasted gently and stone-ground to preserve their volatile oils and rich aromatic flavor. Sourced from natural cooperative growers without any artificial coloring, fillers, or chemical preservation.",
     price: 350,
+    stockQuantity: 1,
     nutrition: {
       "Protein": "12g",
       "Dietary Fiber": "35g",
