@@ -40,8 +40,22 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     "premium-masala": 1
   });
 
-  // Load cart and inventory from localStorage on mount
+  // Load cart and inventory from localStorage on mount, then fetch live stock
   useEffect(() => {
+    async function loadLiveInventory() {
+      try {
+        const res = await fetch("/api/inventory");
+        if (res.ok) {
+          const data = await res.json();
+          if (data.inventory) {
+            setInventory(data.inventory);
+          }
+        }
+      } catch (e) {
+        console.warn("Failed to fetch live inventory from database, using local fallback:", e);
+      }
+    }
+
     try {
       const savedCart = localStorage.getItem("vrnda_cart");
       if (savedCart) {
@@ -56,6 +70,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       console.error("Failed to load cart or inventory data", e);
     }
     setIsInitialized(true);
+    loadLiveInventory();
   }, []);
 
   // Save cart and inventory to localStorage on changes

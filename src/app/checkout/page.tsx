@@ -120,6 +120,7 @@ export default function CheckoutPage() {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
               paymentId,
+              razorpayOrderId: razorpayOrder.id,
               orderData: {
                 formData,
                 items: cartItems,
