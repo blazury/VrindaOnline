@@ -1,34 +1,14 @@
 import { PrismaClient } from "@prisma/client";
-import { PrismaPg } from "@prisma/adapter-pg";
-import { Pool } from "pg";
 
-let prisma: any;
+let prisma: PrismaClient;
 
-try {
-  const connectionString = 
-    process.env.POSTGRES_PRISMA_URL || 
-    process.env.POSTGRES_URL || 
-    process.env.DATABASE_URL;
-
-  if (connectionString) {
-    const pool = new Pool({ connectionString });
-    const adapter = new PrismaPg(pool);
-    prisma = new PrismaClient({ adapter });
-  } else {
-    prisma = new Proxy({}, {
-      get() {
-        throw new Error("PrismaClient is not initialized because database connection string (POSTGRES_PRISMA_URL, POSTGRES_URL, or DATABASE_URL) is missing.");
-      }
-    });
+if (process.env.NODE_ENV === "production") {
+  prisma = new PrismaClient();
+} else {
+  if (!(global as any).prisma) {
+    (global as any).prisma = new PrismaClient();
   }
-} catch (e: any) {
-  console.warn("Failed to initialize Prisma Client adapter:", e);
-  const errMsg = e.message || String(e);
-  prisma = new Proxy({}, {
-    get() {
-      throw new Error(`PrismaClient failed to initialize. Error: ${errMsg}`);
-    }
-  });
+  prisma = (global as any).prisma;
 }
 
 export { prisma };
