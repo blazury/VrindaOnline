@@ -9,15 +9,8 @@ export async function POST(request: Request) {
       return NextResponse.json({ success: false, error: "Invalid price provided" }, { status: 400 });
     }
 
-    const keyId = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID;
-    const keySecret = process.env.RAZORPAY_KEY_SECRET;
-
-    if (!keyId || !keySecret) {
-      return NextResponse.json({ 
-        success: false, 
-        error: "Razorpay credentials are not configured in the server environment variables." 
-      }, { status: 500 });
-    }
+    const keyId = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || "rzp_test_TBLHJ0zIQm3O2q";
+    const keySecret = process.env.RAZORPAY_KEY_SECRET || "Z2HQ8IZ6XrSl9SVRBEy0U4wu";
 
     // Call official Razorpay Orders API directly using Basic Auth
     const authString = Buffer.from(`${keyId}:${keySecret}`).toString("base64");
