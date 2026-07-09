@@ -28,11 +28,11 @@ export default function BuyNowButton({ id, name, price, image }: BuyNowButtonPro
   return (
     <div className="flex flex-col items-start gap-1.5 flex-grow sm:flex-grow-0">
       {stock === 0 ? (
-        <span className="text-[10px] font-bold uppercase tracking-wider text-[#8c6239] pl-4 animate-pulse">
+        <span className="text-[10px] font-bold uppercase tracking-wider text-[#8c6239] pl-2 animate-pulse">
           Out of Stock
         </span>
       ) : (
-        <span className="text-[10px] font-bold uppercase tracking-wider text-[#8c6239] pl-4 flex items-center gap-1.5 animate-pulse">
+        <span className="text-[10px] font-bold uppercase tracking-wider text-[#8c6239] pl-2 flex items-center gap-1.5 animate-pulse">
           <span className="w-1.5 h-1.5 rounded-full bg-[#8c6239] inline-block"></span>
           Only {stock} unit left!
         </span>
