@@ -52,7 +52,7 @@ export default function ConfirmationScreen() {
           className="text-4xl text-[#1f3f21] font-bold tracking-tight"
           style={{ fontFamily: "var(--font-cormorant), serif" }}
         >
-          Subscription Active
+          {plan === "Product Order" ? "Order Confirmed" : "Subscription Active"}
         </h2>
 
         {/* Dynamic greeting */}
@@ -61,19 +61,21 @@ export default function ConfirmationScreen() {
             Thank you, {name}!
           </p>
           <p className="text-sm leading-relaxed text-[#2c2c2c]/75 font-semibold max-w-md mx-auto">
-            Your healthy breakfast combo subscription has been initialized. We will contact you on your registered phone number to confirm your first morning delivery details.
+            {plan === "Product Order"
+              ? "Your organic food products order has been successfully placed. We will contact you on your registered phone number to confirm your delivery details."
+              : "Your healthy breakfast combo subscription has been initialized. We will contact you on your registered phone number to confirm your first morning delivery details."}
           </p>
         </div>
 
         {/* Order Invoice Summary */}
         <div className="bg-[#f7f2e9]/50 border border-[#8c6239]/5 rounded-2xl p-6 max-w-sm mx-auto space-y-3 text-xs font-bold uppercase tracking-wider text-[#8c6239]">
           <div className="flex justify-between gap-4 border-b border-[#8c6239]/10 pb-2">
-            <span>Subscriber</span>
+            <span>{plan === "Product Order" ? "Customer" : "Subscriber"}</span>
             <span className="text-[#1f3f21] normal-case">{name}</span>
           </div>
           <div className="flex justify-between gap-4 border-b border-[#8c6239]/10 pb-2">
-            <span>Selected Plan</span>
-            <span className="text-[#1f3f21]">{plan} Plan</span>
+            <span>{plan === "Product Order" ? "Order Type" : "Selected Plan"}</span>
+            <span className="text-[#1f3f21]">{plan === "Product Order" ? "Organic Products" : `${plan} Plan`}</span>
           </div>
           {freshJuice && (
             <div className="flex justify-between gap-4 border-b border-[#8c6239]/10 pb-2">

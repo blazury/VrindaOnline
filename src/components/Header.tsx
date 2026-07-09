@@ -4,9 +4,12 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { ShoppingBag } from "lucide-react";
+import { useCart } from "@/context/CartContext";
 
 export default function Header() {
   const pathname = usePathname();
+  const { toggleCart, cartCount } = useCart();
 
   const isLinkActive = (path: string) => {
     if (path === "/" && pathname === "/") return true;
@@ -66,8 +69,22 @@ export default function Header() {
           </Link>
         </nav>
 
-        {/* Action Button */}
-        <div>
+        {/* Action Button & Cart Indicator */}
+        <div className="flex items-center gap-3">
+          {/* Cart Toggle Icon */}
+          <button
+            onClick={() => toggleCart(true)}
+            className="relative p-2.5 rounded-full hover:bg-brand-green/5 text-brand-dark/80 hover:text-brand-green transition-all duration-300 animate-fade-in"
+            aria-label="Open cart drawer"
+          >
+            <ShoppingBag className="w-5 h-5" />
+            {cartCount > 0 && (
+              <span className="absolute top-1 right-1 bg-[#8c6239] text-white text-[8px] font-bold h-4 w-4 rounded-full flex items-center justify-center animate-pulse">
+                {cartCount}
+              </span>
+            )}
+          </button>
+
           <Link 
             href="/products" 
             className="inline-flex items-center justify-center px-5 py-2.5 rounded-full border border-brand-green text-[10px] font-bold uppercase tracking-widest text-brand-green hover:bg-brand-green hover:text-brand-light transition-all duration-300"

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Cormorant_Garamond, Inter } from "next/font/google";
 import { ArrowLeft, MapPin, Hammer, Sparkles } from "lucide-react";
+import BuyNowButton from "@/components/BuyNowButton";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -26,6 +27,7 @@ interface ProductData {
   method: string;
   tagline: string;
   desc: string;
+  price: number;
   nutrition: Record<string, string>;
 }
 
@@ -39,6 +41,7 @@ const products: Record<string, ProductData> = {
     method: "Churned via traditional Bilona method (curd-to-ghee)",
     tagline: "Golden elixir for gut-health, immunity, and memory reinforcement.",
     desc: "Our Vedic A2 Ghee is prepared strictly following the scriptures. Hand-churned at sunrise using curd rather than raw cream, this ghee contains healthy fatty acids and has high medicinal quality. Sourced from native Gir cows grazed on diverse organic pastureland.",
+    price: 1250,
     nutrition: {
       "Saturated Fat": "60g",
       "Butyric Acid": "4.5g",
@@ -55,6 +58,7 @@ const products: Record<string, ProductData> = {
     method: "Raw cold-extraction (uncured, unfiltered, unheated)",
     tagline: "Enzyme-active mountain honey collected by tribal foragers.",
     desc: "Harvested from wild hives in deep deciduous forests, this honey has rich multi-floral notes. Never heated, micro-filtered, or adulterated, it remains in its true biological state with active honeybee pollen, trace minerals, and vitamins intact.",
+    price: 850,
     nutrition: {
       "Carbohydrates": "82g",
       "Natural Sugars": "80g",
@@ -71,6 +75,7 @@ const products: Record<string, ProductData> = {
     method: "Shade-dried and low-temperature stone ground leaves",
     tagline: "Superfood green powder packed with vitamins and essential minerals.",
     desc: "Made from fresh leaves of the miracle tree moringa. Handpicked at peak nutrient density, shade-dried to protect the chlorophyll, and finely milled into a pure superfood powder. Excellent for metabolic wellness and natural energy support.",
+    price: 450,
     nutrition: {
       "Protein": "27g",
       "Iron": "28mg",
@@ -87,6 +92,7 @@ const products: Record<string, ProductData> = {
     method: "Low-temperature wood-press extraction (Kachi Ghani)",
     tagline: "Unrefined raw virgin oil rich in immune-boosting Lauric acid.",
     desc: "Extracted from sun-dried organic coconut meat using traditional heavy wood-presses. Never chemically bleached, deodorized, or refined, this oil retains its fresh tropical aroma and vital MCT nutrition suited for dietary and wellness practices.",
+    price: 950,
     nutrition: {
       "Lauric Acid": "49g",
       "Caprylic Acid": "8g",
@@ -103,6 +109,7 @@ const products: Record<string, ProductData> = {
     method: "Slow-roasted, stone-ground traditional spices",
     tagline: "Traditional stone-ground spice blend for aromatic culinary excellence.",
     desc: "Vṛndā Premium Masala is an artisanal blend of hand-selected whole spices, roasted gently and stone-ground to preserve their volatile oils and rich aromatic flavor. Sourced from natural cooperative growers without any artificial coloring, fillers, or chemical preservation.",
+    price: 350,
     nutrition: {
       "Protein": "12g",
       "Dietary Fiber": "35g",
@@ -336,13 +343,14 @@ export default async function ProductPage({ params }: Props) {
             <div className="border-t border-[#8c6239]/10 pt-6 flex items-center justify-between gap-6 font-semibold">
               <div>
                 <span className="text-[9px] font-bold uppercase text-[#2c2c2c]/50 block">Cooperative Price</span>
-                <span className="font-serif text-2xl font-bold text-[#1f3f21]">₹ 1,250 <span className="text-xs text-[#2c2c2c]/60 font-sans font-medium">/ unit</span></span>
+                <span className="font-serif text-2xl font-bold text-[#1f3f21]">₹ {product.price.toLocaleString("en-IN")} <span className="text-xs text-[#2c2c2c]/60 font-sans font-medium">/ unit</span></span>
               </div>
-              <button 
-                className="flex-grow sm:flex-grow-0 px-8 py-3 bg-[#1f3f21] text-white text-xs font-bold uppercase tracking-widest rounded-2xl hover:bg-[#8c6239] transition-all duration-300 shadow-md hover:shadow-lg"
-              >
-                Buy Now
-              </button>
+              <BuyNowButton 
+                id={slug}
+                name={product.title}
+                price={product.price}
+                image={product.image}
+              />
             </div>
           </div>
 
