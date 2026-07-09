@@ -34,7 +34,7 @@ export default function ProductsPage() {
         
         {/* Slide 1: Welcome & Overview */}
         <section className="h-screen flex flex-col justify-center px-6 pointer-events-auto">
-          <div className="max-w-3xl mx-auto text-center bg-white/80 border border-[#8c6239]/10 p-10 md:p-16 rounded-3xl shadow-xl space-y-4 backdrop-blur-md">
+          <div className="max-w-3xl mx-auto w-full text-center bg-white/80 border border-[#8c6239]/10 p-10 md:p-16 rounded-3xl shadow-xl space-y-4 backdrop-blur-md">
             <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#8c6239] block">
               Scroll to explore
             </span>
