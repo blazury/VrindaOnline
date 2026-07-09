@@ -88,8 +88,8 @@ export default function CheckoutPage() {
     setIsSubmitting(true);
 
     try {
-      // 1. Create order on server (mock)
-      const res = await fetch("/api/create-order", {
+      // 1. Create order on server via secure api/razorpay
+      const res = await fetch("/api/razorpay", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ price: cartSubtotal })
@@ -103,11 +103,11 @@ export default function CheckoutPage() {
       const { razorpayOrder } = data;
 
       // 2. Configure Razorpay Standard Checkout in Test Mode
-      // We deliberately omit order_id in order to run checkout in Standard Test Mode bypassing strict verification.
       const options = {
-        key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || "rzp_test_SzDqCnXlPoPsFg",
+        key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || "rzp_test_TBLHJ0zIQm3O2q",
         amount: razorpayOrder.amount,
         currency: razorpayOrder.currency,
+        order_id: razorpayOrder.id,
         name: "Vṛndā Organic Store",
         description: `Order of ${cartItems.length} items`,
         image: "/images/logo.jpeg",

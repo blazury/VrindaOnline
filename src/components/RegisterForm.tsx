@@ -146,7 +146,7 @@ export default function RegisterForm() {
 
     try {
       // Mock /api/create-order call
-      const res = await fetch("/api/create-order", {
+      const res = await fetch("/api/razorpay", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -163,9 +163,10 @@ export default function RegisterForm() {
       }
 
       const options = {
-        key: "rzp_test_SzDqCnXlPoPsFg", // Cloned production-compatible Razorpay Key
+        key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || "rzp_test_TBLHJ0zIQm3O2q",
         amount: orderData.razorpayOrder.amount,
         currency: orderData.razorpayOrder.currency,
+        order_id: orderData.razorpayOrder.id,
         name: "Vrnda",
         description: `${selectedPlan.name} Wellness Plan`,
         image: "/images/logo.jpeg",
