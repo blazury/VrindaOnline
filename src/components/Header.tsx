@@ -19,14 +19,14 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         
         {/* Exact Branding Logo from /images/logo.jpeg */}
-        <Link href="/" className="flex items-center group relative h-16 w-44">
+        <Link href="/" className="flex items-center group relative h-12 w-32 rounded-2xl overflow-hidden border border-brand-brown/15 shadow-sm bg-white">
           <Image
             src="/images/logo.jpeg"
             alt="Vṛndā Logo"
             fill
-            sizes="176px"
+            sizes="128px"
             priority
-            className="object-contain transition-transform duration-300 group-hover:scale-[1.02]"
+            className="object-contain p-1.5 transition-transform duration-300 group-hover:scale-105"
           />
         </Link>
 
