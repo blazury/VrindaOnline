@@ -5,7 +5,11 @@ import { Pool } from "pg";
 let prisma: any;
 
 try {
-  const connectionString = process.env.DATABASE_URL;
+  const connectionString = 
+    process.env.POSTGRES_PRISMA_URL || 
+    process.env.POSTGRES_URL || 
+    process.env.DATABASE_URL;
+
   if (connectionString) {
     const pool = new Pool({ connectionString });
     const adapter = new PrismaPg(pool);
@@ -13,15 +17,16 @@ try {
   } else {
     prisma = new Proxy({}, {
       get() {
-        throw new Error("PrismaClient is not initialized because DATABASE_URL is missing.");
+        throw new Error("PrismaClient is not initialized because database connection string (POSTGRES_PRISMA_URL, POSTGRES_URL, or DATABASE_URL) is missing.");
       }
     });
   }
-} catch (e) {
+} catch (e: any) {
   console.warn("Failed to initialize Prisma Client adapter:", e);
+  const errMsg = e.message || String(e);
   prisma = new Proxy({}, {
     get() {
-      throw new Error("PrismaClient failed to initialize.");
+      throw new Error(`PrismaClient failed to initialize. Error: ${errMsg}`);
     }
   });
 }
