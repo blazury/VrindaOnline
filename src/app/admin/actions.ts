@@ -39,16 +39,16 @@ export async function getAdminData() {
 export async function updateStockAction(slug: string, newStock: number) {
   try {
     if (newStock < 0) return { success: false, error: "Stock cannot be negative." };
-    const success = await updateProductStock(slug, newStock);
-    if (success) {
+    const result = await updateProductStock(slug, newStock);
+    if (result.success) {
       revalidatePath("/admin");
       revalidatePath(`/products/${slug}`);
       revalidatePath("/products");
       return { success: true };
     }
-    return { success: false, error: "Failed to update stock in database." };
-  } catch (error) {
+    return { success: false, error: result.error || "Failed to update stock in database." };
+  } catch (error: any) {
     console.error("Error updating stock:", error);
-    return { success: false, error: "Error occurred while updating stock." };
+    return { success: false, error: error.message || "Error occurred while updating stock." };
   }
 }

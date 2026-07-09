@@ -108,16 +108,16 @@ export async function getProductBySlug(slug: string): Promise<ProductData | null
 }
 
 // Update product stock
-export async function updateProductStock(slug: string, newStock: number): Promise<boolean> {
+export async function updateProductStock(slug: string, newStock: number): Promise<{ success: boolean; error?: string }> {
   try {
     await prisma.product.update({
       where: { slug },
       data: { stockQuantity: newStock }
     });
-    return true;
-  } catch (error) {
+    return { success: true };
+  } catch (error: any) {
     console.warn(`Failed to update DB stock for ${slug}:`, error);
-    return false;
+    return { success: false, error: error.message || String(error) };
   }
 }
 
