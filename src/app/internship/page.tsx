@@ -78,14 +78,21 @@ export default function InternshipPage() {
     setIsModalOpen(false);
   };
 
+  const handleScrollToForm = () => {
+    const element = document.getElementById("apply-form");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <main 
       className={`${cormorant.variable} ${inter.variable} relative min-h-screen bg-transparent antialiased text-[#2c2c2c]`}
       style={{ fontFamily: "var(--font-inter), sans-serif" }}
     >
-      {/* Sunlit Forest & Stone Arch Fixed Background (Page 3 Background in PDF) */}
+      {/* Sunlit Forest & Stone Arch Background (Page 3 Background in PDF) - Fix bg-fixed on mobile */}
       <div 
-        className="fixed inset-0 -z-10 bg-cover bg-center bg-fixed transition-all duration-700" 
+        className="fixed inset-0 -z-10 bg-cover bg-center bg-scroll md:bg-fixed transition-all duration-700" 
         style={{ backgroundImage: "url('/images/bg_combined.jpg')" }}
       />
       <div className="fixed inset-0 -z-10 bg-[#faf8f5]/90 backdrop-blur-[4px]" />
@@ -105,7 +112,7 @@ export default function InternshipPage() {
             <div className="relative w-14 h-14 bg-white rounded-full overflow-hidden border border-[#8c6239]/15 flex items-center justify-center p-1">
               <Image src="/images/logo.jpeg" alt="Vrnda Logo" width={56} height={56} className="object-contain" />
             </div>
-            <div>
+            <div className="text-left">
               <span className="text-[10px] font-extrabold uppercase tracking-[0.2em] text-[#8c6239] block">ROOTED IN DEVOTION</span>
               <h2 className="font-serif text-xl sm:text-2xl font-bold text-[#1f3f21] leading-tight mt-0.5" style={{ fontFamily: "var(--font-cormorant), serif" }}>
                 VRNDA
@@ -120,6 +127,12 @@ export default function InternshipPage() {
             <span className="text-[10px] font-bold text-[#8c6239] tracking-widest uppercase block mt-1">
               An Initiative by ISKCON Mangalore
             </span>
+            <button 
+              onClick={handleScrollToForm}
+              className="mt-3.5 inline-flex items-center gap-2 px-5 py-2.5 bg-[#1f3f21] hover:bg-[#8c6239] text-[#f7f2e9] text-[10px] font-bold uppercase tracking-widest rounded-xl transition-all duration-300 shadow-sm"
+            >
+              Apply for Internship <ArrowRight className="w-3.5 h-3.5" />
+            </button>
           </div>
 
           <div className="text-right hidden md:block">
@@ -139,7 +152,7 @@ export default function InternshipPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             
             {/* Left: Building Values-Driven Enterprise */}
-            <div className="lg:col-span-6 space-y-4">
+            <div className="lg:col-span-6 space-y-4 text-left">
               <h2 className="font-serif text-3xl md:text-4xl font-extrabold text-[#1f3f21] leading-tight tracking-tight" style={{ fontFamily: "var(--font-cormorant), serif" }}>
                 Building a Values-Driven Enterprise
               </h2>
@@ -150,11 +163,19 @@ export default function InternshipPage() {
               <p className="text-sm leading-relaxed text-[#2c2c2c]/85 font-semibold">
                 We create meaningful value for customers, communities and future business leaders.
               </p>
+              <div className="pt-2">
+                <button 
+                  onClick={handleScrollToForm}
+                  className="inline-flex items-center gap-2.5 px-6 py-3 bg-[#1f3f21] hover:bg-[#8c6239] text-[#f7f2e9] text-[10px] font-bold uppercase tracking-widest rounded-xl transition-all duration-300 shadow hover:shadow-md"
+                >
+                  Start Your Application <ArrowRight className="w-4 h-4" />
+                </button>
+              </div>
             </div>
 
             {/* Right: Vision & Mission */}
             <div className="lg:col-span-6 space-y-6">
-              <div className="bg-[#f7f2e9]/75 border border-[#8c6239]/15 p-6 rounded-2xl space-y-2">
+              <div className="bg-[#f7f2e9]/75 border border-[#8c6239]/15 p-6 rounded-2xl space-y-2 text-left">
                 <h3 className="font-serif text-lg font-bold text-[#1f3f21] uppercase tracking-wider" style={{ fontFamily: "var(--font-cormorant), serif" }}>
                   Our Vision
                 </h3>
@@ -163,7 +184,7 @@ export default function InternshipPage() {
                 </p>
               </div>
 
-              <div className="bg-[#f7f2e9]/75 border border-[#8c6239]/15 p-6 rounded-2xl space-y-3">
+              <div className="bg-[#f7f2e9]/75 border border-[#8c6239]/15 p-6 rounded-2xl space-y-3 text-left">
                 <h3 className="font-serif text-lg font-bold text-[#1f3f21] uppercase tracking-wider" style={{ fontFamily: "var(--font-cormorant), serif" }}>
                   Our Mission
                 </h3>
@@ -262,7 +283,7 @@ export default function InternshipPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch pt-4">
             
             {/* Internship Highlights Table */}
-            <div className="lg:col-span-6 bg-[#f7f2e9]/75 border border-[#8c6239]/15 p-6 rounded-[2rem] space-y-4">
+            <div className="lg:col-span-6 bg-[#f7f2e9]/75 border border-[#8c6239]/15 p-6 rounded-[2rem] space-y-4 text-left">
               <h3 className="font-serif text-lg font-extrabold text-[#1f3f21] uppercase tracking-wider border-b border-[#8c6239]/10 pb-2" style={{ fontFamily: "var(--font-cormorant), serif" }}>
                 Internship Highlights
               </h3>
@@ -286,7 +307,7 @@ export default function InternshipPage() {
             {/* Target streams and skills */}
             <div className="lg:col-span-6 flex flex-col justify-between gap-6">
               
-              <div className="bg-[#1f3f21] text-[#f7f2e9] p-6 rounded-[2rem] shadow-md space-y-4">
+              <div className="bg-[#1f3f21] text-[#f7f2e9] p-6 rounded-[2rem] shadow-md space-y-4 text-left">
                 <h3 className="font-serif text-lg font-bold tracking-wider" style={{ fontFamily: "var(--font-cormorant), serif" }}>
                   Who Can Apply
                 </h3>
@@ -297,7 +318,7 @@ export default function InternshipPage() {
                 </div>
               </div>
 
-              <div className="bg-white/70 border border-[#8c6239]/15 p-6 rounded-[2rem] space-y-3 flex-grow">
+              <div className="bg-white/70 border border-[#8c6239]/15 p-6 rounded-[2rem] space-y-3 flex-grow text-left">
                 <h3 className="font-serif text-lg font-extrabold text-[#1f3f21]" style={{ fontFamily: "var(--font-cormorant), serif" }}>
                   Skills You Will Develop
                 </h3>
@@ -343,7 +364,7 @@ export default function InternshipPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             
             {/* What you will work on */}
-            <div className="lg:col-span-6 bg-[#f7f2e9]/75 border border-[#8c6239]/15 p-6 rounded-[2rem] space-y-4">
+            <div className="lg:col-span-6 bg-[#f7f2e9]/75 border border-[#8c6239]/15 p-6 rounded-[2rem] space-y-4 text-left">
               <h3 className="font-serif text-lg font-extrabold text-[#1f3f21] border-b border-[#8c6239]/10 pb-2" style={{ fontFamily: "var(--font-cormorant), serif" }}>
                 What You Will Work On
               </h3>
@@ -367,7 +388,7 @@ export default function InternshipPage() {
             </div>
 
             {/* Learning Approach */}
-            <div className="lg:col-span-6 bg-[#f7f2e9]/75 border border-[#8c6239]/15 p-6 rounded-[2rem] space-y-4">
+            <div className="lg:col-span-6 bg-[#f7f2e9]/75 border border-[#8c6239]/15 p-6 rounded-[2rem] space-y-4 text-left">
               <h3 className="font-serif text-lg font-extrabold text-[#1f3f21] border-b border-[#8c6239]/10 pb-2" style={{ fontFamily: "var(--font-cormorant), serif" }}>
                 Learning Approach
               </h3>
@@ -378,29 +399,20 @@ export default function InternshipPage() {
 
           </div>
 
-          {/* Mentor Profile Editorial Card */}
+          {/* Mentor Profile Editorial Card - Changed vector silhouette to actual photo */}
           <div className="rounded-[2.5rem] border border-[#8c6239]/15 bg-white/70 p-6 md:p-8 shadow-md max-w-4xl mx-auto border-l-4 border-l-[#1f3f21] backdrop-blur">
             <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-center">
               
-              {/* Vector Silhouette in a sharp black suit */}
+              {/* Actual photo of Mentor Sunil Kumar H.S. */}
               <div className="md:col-span-4 flex justify-center">
-                <div className="relative">
-                  <svg viewBox="0 0 100 100" className="w-36 h-36 rounded-full border border-[#8c6239]/20 bg-gray-100 p-1 shadow-md">
-                    <circle cx="50" cy="50" r="48" fill="#fbfbf9" />
-                    {/* Suit details */}
-                    <path d="M15 95 C 15 72, 30 62, 50 62 C 70 62, 85 72, 85 95 Z" fill="#18181b" />
-                    <path d="M28 95 L40 68 L50 82 L60 68 L72 95 Z" fill="#09090b" />
-                    <path d="M40 62 L50 78 L60 62 Z" fill="#ffffff" />
-                    <path d="M47 67 L53 67 L52 86 L48 86 Z" fill="#1f3f21" />
-                    {/* Face skin */}
-                    <circle cx="50" cy="38" r="18" fill="#f5c7a0" />
-                    {/* Glasses */}
-                    <rect x="36" y="34" width="10" height="4" rx="1" fill="none" stroke="#27272a" strokeWidth="1.5" />
-                    <rect x="54" y="34" width="10" height="4" rx="1" fill="none" stroke="#27272a" strokeWidth="1.5" />
-                    <line x1="46" y1="36" x2="54" y2="36" stroke="#27272a" strokeWidth="1.5" />
-                    <path d="M30 36 C 30 20, 70 20, 70 36 C 70 23, 30 23, 30 36 Z" fill="#4a3728" />
-                  </svg>
-                  <div className="absolute -bottom-1 -right-1 bg-[#1f3f21] text-white p-2 rounded-full shadow border border-white">
+                <div className="relative w-36 h-36 rounded-full overflow-hidden border-2 border-[#8c6239]/30 shadow-md">
+                  <Image 
+                    src="/images/sunil.jpeg" 
+                    alt="Sunil Kumar H.S." 
+                    fill 
+                    className="object-cover"
+                  />
+                  <div className="absolute -bottom-1 -right-1 bg-[#1f3f21] text-white p-2 rounded-full shadow border border-white z-10">
                     <UserCheck className="w-4 h-4" />
                   </div>
                 </div>
@@ -472,7 +484,7 @@ export default function InternshipPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch pt-4">
             
             {/* Eligibility */}
-            <div className="lg:col-span-6 bg-[#f7f2e9]/75 border border-[#8c6239]/15 p-6 rounded-[2rem] space-y-4">
+            <div className="lg:col-span-6 bg-[#f7f2e9]/75 border border-[#8c6239]/15 p-6 rounded-[2rem] space-y-4 text-left">
               <h3 className="font-serif text-lg font-extrabold text-[#1f3f21] border-b border-[#8c6239]/10 pb-2" style={{ fontFamily: "var(--font-cormorant), serif" }}>
                 Who Can Apply
               </h3>
@@ -502,7 +514,7 @@ export default function InternshipPage() {
             </div>
 
             {/* Benefits */}
-            <div className="lg:col-span-6 bg-[#f7f2e9]/75 border border-[#8c6239]/15 p-6 rounded-[2rem] space-y-4">
+            <div className="lg:col-span-6 bg-[#f7f2e9]/75 border border-[#8c6239]/15 p-6 rounded-[2rem] space-y-4 text-left">
               <h3 className="font-serif text-lg font-extrabold text-[#1f3f21] border-b border-[#8c6239]/10 pb-2" style={{ fontFamily: "var(--font-cormorant), serif" }}>
                 Program Benefits
               </h3>
@@ -520,7 +532,7 @@ export default function InternshipPage() {
           </div>
 
           {/* Interactive Contact / Application Form */}
-          <div className="max-w-xl mx-auto bg-[#faf8f5] border border-[#8c6239]/15 p-8 rounded-[2rem] shadow-md space-y-6">
+          <div id="apply-form" className="max-w-xl mx-auto bg-[#faf8f5] border border-[#8c6239]/15 p-8 rounded-[2rem] shadow-md space-y-6">
             <div className="text-center space-y-2">
               <div className="w-10 h-10 rounded-full bg-[#1f3f21]/10 flex items-center justify-center text-[#1f3f21] mx-auto">
                 <Mail className="w-5 h-5" />
@@ -533,7 +545,7 @@ export default function InternshipPage() {
 
             <form onSubmit={handleSubmit} className="space-y-4">
               
-              <div>
+              <div className="text-left">
                 <label className="block text-[9px] font-bold uppercase tracking-wider text-[#8c6239] mb-1">Full Name</label>
                 <input 
                   type="text" 
@@ -546,7 +558,7 @@ export default function InternshipPage() {
                 />
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-left">
                 <div>
                   <label className="block text-[9px] font-bold uppercase tracking-wider text-[#8c6239] mb-1">Email Address</label>
                   <input 
@@ -573,7 +585,7 @@ export default function InternshipPage() {
                 </div>
               </div>
 
-              <div>
+              <div className="text-left">
                 <label className="block text-[9px] font-bold uppercase tracking-wider text-[#8c6239] mb-1">Qualification Stream</label>
                 <select 
                   name="qualification"
@@ -589,7 +601,7 @@ export default function InternshipPage() {
                 </select>
               </div>
 
-              <div>
+              <div className="text-left">
                 <label className="block text-[9px] font-bold uppercase tracking-wider text-[#8c6239] mb-1">Current College / Organization</label>
                 <input 
                   type="text" 
@@ -602,7 +614,7 @@ export default function InternshipPage() {
                 />
               </div>
 
-              <div>
+              <div className="text-left">
                 <label className="block text-[9px] font-bold uppercase tracking-wider text-[#8c6239] mb-1">Statement of Interest</label>
                 <textarea 
                   name="statement" 
