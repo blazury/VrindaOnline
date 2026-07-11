@@ -92,7 +92,7 @@ export default function InternshipPage() {
         className="fixed inset-0 -z-10 bg-cover bg-center bg-scroll md:bg-fixed transition-all duration-700" 
         style={{ backgroundImage: "url('/images/bg_combined.jpg')" }}
       />
-      {/* Fixed backdrop overlay: removed backdrop-blur filter to fix mobile WebKit gray patch rendering bugs */}
+      {/* Fixed backdrop overlay: 92% opacity cream container blocks background text leaks in margins */}
       <div className="fixed inset-0 -z-10 bg-[#faf8f5]/92" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 relative z-10 space-y-16">
@@ -104,8 +104,8 @@ export default function InternshipPage() {
           <span className="text-[#1f3f21]">Internship Program</span>
         </div>
 
-        {/* Master Logo Header (Flyer Header Copy) */}
-        <header className="flex flex-col md:flex-row items-center justify-between bg-white/70 border border-[#8c6239]/15 p-6 md:p-8 rounded-[2rem] shadow-sm backdrop-blur-md gap-6">
+        {/* Master Logo Header (Flyer Header Copy) - Made solid bg-white to block background text leaks */}
+        <header className="flex flex-col md:flex-row items-center justify-between bg-white border border-[#8c6239]/15 p-6 md:p-8 rounded-[2rem] shadow-sm gap-6">
           <div className="flex items-center gap-4">
             <div className="relative w-14 h-14 bg-white rounded-full overflow-hidden border border-[#8c6239]/15 flex items-center justify-center p-1">
               <Image src="/images/logo.jpeg" alt="Vrnda Logo" width={56} height={56} className="object-contain" />
@@ -125,7 +125,6 @@ export default function InternshipPage() {
             <span className="text-[10px] font-bold text-[#8c6239] tracking-widest uppercase block mt-1">
               An Initiative by ISKCON Mangalore
             </span>
-            {/* CTA Scroll trigger in the master header */}
             <button 
               onClick={handleScrollToForm}
               className="mt-3.5 inline-flex items-center gap-2 px-5 py-2.5 bg-[#1f3f21] hover:bg-[#8c6239] text-[#f7f2e9] text-[10px] font-bold uppercase tracking-widest rounded-xl transition-all duration-300 shadow-sm"
@@ -145,8 +144,8 @@ export default function InternshipPage() {
           </div>
         </header>
 
-        {/* SECTION 1: Values-Driven Enterprise (Page 1) */}
-        <section className="bg-white/60 border border-[#8c6239]/10 p-8 md:p-12 rounded-[2.5rem] shadow-xl backdrop-blur space-y-12">
+        {/* SECTION 1: Values-Driven Enterprise (Page 1) - Made solid bg-white to block background text leaks */}
+        <section className="bg-white border border-[#8c6239]/10 p-8 md:p-12 rounded-[2.5rem] shadow-xl space-y-12 animate-fade-in">
           
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             
@@ -162,7 +161,6 @@ export default function InternshipPage() {
               <p className="text-sm leading-relaxed text-[#2c2c2c]/85 font-semibold">
                 We create meaningful value for customers, communities and future business leaders.
               </p>
-              {/* Hero bottom scroll CTA */}
               <div className="pt-2">
                 <button 
                   onClick={handleScrollToForm}
@@ -173,9 +171,9 @@ export default function InternshipPage() {
               </div>
             </div>
 
-            {/* Right: Vision & Mission */}
+            {/* Right: Vision & Mission - Made solid bg-[#f7f2e9] to block background text leaks */}
             <div className="lg:col-span-6 space-y-6">
-              <div className="bg-[#f7f2e9]/75 border border-[#8c6239]/15 p-6 rounded-2xl space-y-2 text-left">
+              <div className="bg-[#f7f2e9] border border-[#8c6239]/15 p-6 rounded-2xl space-y-2 text-left shadow-sm">
                 <h3 className="font-serif text-lg font-bold text-[#1f3f21] uppercase tracking-wider" style={{ fontFamily: "var(--font-cormorant), serif" }}>
                   Our Vision
                 </h3>
@@ -184,7 +182,7 @@ export default function InternshipPage() {
                 </p>
               </div>
 
-              <div className="bg-[#f7f2e9]/75 border border-[#8c6239]/15 p-6 rounded-2xl space-y-3 text-left">
+              <div className="bg-[#f7f2e9] border border-[#8c6239]/15 p-6 rounded-2xl space-y-3 text-left shadow-sm">
                 <h3 className="font-serif text-lg font-bold text-[#1f3f21] uppercase tracking-wider" style={{ fontFamily: "var(--font-cormorant), serif" }}>
                   Our Mission
                 </h3>
@@ -220,7 +218,7 @@ export default function InternshipPage() {
                   className="relative rounded-2xl overflow-hidden border border-[#8c6239]/15 group h-52 shadow-sm flex flex-col justify-end p-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
                   style={{ backgroundImage: `url(${vertical.bg})`, backgroundSize: "cover", backgroundPosition: "center" }}
                 >
-                  <div className="absolute inset-0 bg-[#1f3f21]/80 transition-colors group-hover:bg-[#1f3f21]/85 z-0" />
+                  <div className="absolute inset-0 bg-[#1f3f21]/80 transition-colors group-hover:bg-[#1f3f21]/85" />
                   <div className="relative z-10 space-y-1.5 text-white text-left">
                     <h4 className="font-serif text-sm font-bold text-[#f7f2e9]" style={{ fontFamily: "var(--font-cormorant), serif" }}>{vertical.title}</h4>
                     <p className="text-[9px] text-[#f7f2e9]/85 font-medium leading-relaxed">{vertical.desc}</p>
@@ -239,8 +237,8 @@ export default function InternshipPage() {
 
         </section>
 
-        {/* SECTION 2: Why Join / Key Benefits (Page 2) */}
-        <section className="bg-white/60 border border-[#8c6239]/10 p-8 md:p-12 rounded-[2.5rem] shadow-xl backdrop-blur space-y-12">
+        {/* SECTION 2: Why Join / Key Benefits (Page 2) - Made solid bg-white to block background text leaks */}
+        <section className="bg-white border border-[#8c6239]/10 p-8 md:p-12 rounded-[2.5rem] shadow-xl space-y-12">
           
           <div className="text-center space-y-3">
             <h2 className="font-serif text-3xl font-extrabold text-[#1f3f21] tracking-tight" style={{ fontFamily: "var(--font-cormorant), serif" }}>
@@ -252,7 +250,7 @@ export default function InternshipPage() {
             <div className="w-12 h-0.5 bg-[#8c6239] mx-auto" />
           </div>
 
-          {/* 6 Key Benefits Cards */}
+          {/* 6 Key Benefits Cards - Made solid bg-white to block background leaks */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               { num: "01", title: "Real Business Exposure", desc: "Work on real-time projects that create impact." },
@@ -264,7 +262,7 @@ export default function InternshipPage() {
             ].map((pillar) => (
               <div 
                 key={pillar.num} 
-                className="rounded-3xl border border-[#8c6239]/10 bg-white/70 p-6 shadow-sm backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:shadow-md space-y-3 text-left relative overflow-hidden"
+                className="rounded-3xl border border-[#8c6239]/10 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md space-y-3 text-left relative overflow-hidden"
               >
                 <div className="absolute right-4 top-4 text-4xl font-serif font-extrabold text-[#8c6239]/10 select-none">{pillar.num}</div>
                 <div className="w-8 h-8 rounded-lg bg-[#8c6239]/10 flex items-center justify-center text-[#8c6239] font-bold text-xs">
@@ -282,8 +280,8 @@ export default function InternshipPage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch pt-4">
             
-            {/* Internship Highlights Table */}
-            <div className="lg:col-span-6 bg-[#f7f2e9]/75 border border-[#8c6239]/15 p-6 rounded-[2rem] space-y-4 text-left">
+            {/* Internship Highlights Table - Made solid bg-[#f7f2e9] */}
+            <div className="lg:col-span-6 bg-[#f7f2e9] border border-[#8c6239]/15 p-6 rounded-[2rem] space-y-4 text-left shadow-sm">
               <h3 className="font-serif text-lg font-extrabold text-[#1f3f21] uppercase tracking-wider border-b border-[#8c6239]/10 pb-2" style={{ fontFamily: "var(--font-cormorant), serif" }}>
                 Internship Highlights
               </h3>
@@ -318,7 +316,8 @@ export default function InternshipPage() {
                 </div>
               </div>
 
-              <div className="bg-white/70 border border-[#8c6239]/15 p-6 rounded-[2rem] space-y-3 flex-grow text-left">
+              {/* Skills You Will Develop - Made solid bg-white */}
+              <div className="bg-white border border-[#8c6239]/15 p-6 rounded-[2rem] space-y-3 flex-grow text-left shadow-sm">
                 <h3 className="font-serif text-lg font-extrabold text-[#1f3f21]" style={{ fontFamily: "var(--font-cormorant), serif" }}>
                   Skills You Will Develop
                 </h3>
@@ -348,8 +347,8 @@ export default function InternshipPage() {
 
         </section>
 
-        {/* SECTION 3: Internship Experience & Mentor (Page 3) */}
-        <section className="bg-white/60 border border-[#8c6239]/10 p-8 md:p-12 rounded-[2.5rem] shadow-xl backdrop-blur space-y-12">
+        {/* SECTION 3: Internship Experience & Mentor (Page 3) - Made solid bg-white to block background leaks */}
+        <section className="bg-white border border-[#8c6239]/10 p-8 md:p-12 rounded-[2.5rem] shadow-xl space-y-12">
           
           <div className="text-center space-y-3">
             <h2 className="font-serif text-3xl font-extrabold text-[#1f3f21] tracking-tight" style={{ fontFamily: "var(--font-cormorant), serif" }}>
@@ -363,8 +362,8 @@ export default function InternshipPage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             
-            {/* What you will work on */}
-            <div className="lg:col-span-6 bg-[#f7f2e9]/75 border border-[#8c6239]/15 p-6 rounded-[2rem] space-y-4 text-left">
+            {/* What you will work on - Made solid bg-[#f7f2e9] (No transparency) to completely hide clashing background image text blocks */}
+            <div className="lg:col-span-6 bg-[#f7f2e9] border border-[#8c6239]/15 p-6 rounded-[2rem] space-y-4 text-left shadow-sm">
               <h3 className="font-serif text-lg font-extrabold text-[#1f3f21] border-b border-[#8c6239]/10 pb-2" style={{ fontFamily: "var(--font-cormorant), serif" }}>
                 What You Will Work On
               </h3>
@@ -387,8 +386,8 @@ export default function InternshipPage() {
               </ul>
             </div>
 
-            {/* Learning Approach */}
-            <div className="lg:col-span-6 bg-[#f7f2e9]/75 border border-[#8c6239]/15 p-6 rounded-[2rem] space-y-4 text-left">
+            {/* Learning Approach - Made solid bg-[#f7f2e9] (No transparency) */}
+            <div className="lg:col-span-6 bg-[#f7f2e9] border border-[#8c6239]/15 p-6 rounded-[2rem] space-y-4 text-left shadow-sm">
               <h3 className="font-serif text-lg font-extrabold text-[#1f3f21] border-b border-[#8c6239]/10 pb-2" style={{ fontFamily: "var(--font-cormorant), serif" }}>
                 Learning Approach
               </h3>
@@ -399,8 +398,8 @@ export default function InternshipPage() {
 
           </div>
 
-          {/* Mentor Profile Editorial Card */}
-          <div className="rounded-[2.5rem] border border-[#8c6239]/15 bg-white/70 p-6 md:p-8 shadow-md max-w-4xl mx-auto border-l-4 border-l-[#1f3f21] backdrop-blur">
+          {/* Mentor Profile Editorial Card - Made solid bg-white to hide background table overlays */}
+          <div className="rounded-[2.5rem] border border-[#8c6239]/15 bg-white p-6 md:p-8 shadow-md max-w-4xl mx-auto border-l-4 border-l-[#1f3f21]">
             <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-center">
               
               {/* Actual photo of Mentor Sunil Kumar H.S. */}
@@ -450,8 +449,8 @@ export default function InternshipPage() {
 
         </section>
 
-        {/* SECTION 4: Application Process & Details (Page 4) */}
-        <section className="bg-white/60 border border-[#8c6239]/10 p-8 md:p-12 rounded-[2.5rem] shadow-xl backdrop-blur space-y-12">
+        {/* SECTION 4: Application Process & Details (Page 4) - Made solid bg-white to block background leaks */}
+        <section className="bg-white border border-[#8c6239]/10 p-8 md:p-12 rounded-[2.5rem] shadow-xl space-y-12">
           
           <div className="text-center space-y-3">
             <h2 className="font-serif text-3xl font-extrabold text-[#1f3f21] tracking-tight" style={{ fontFamily: "var(--font-cormorant), serif" }}>
@@ -483,8 +482,8 @@ export default function InternshipPage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch pt-4">
             
-            {/* Eligibility */}
-            <div className="lg:col-span-6 bg-[#f7f2e9]/75 border border-[#8c6239]/15 p-6 rounded-[2rem] space-y-4 text-left">
+            {/* Eligibility - Made solid bg-[#f7f2e9] */}
+            <div className="lg:col-span-6 bg-[#f7f2e9] border border-[#8c6239]/15 p-6 rounded-[2rem] space-y-4 text-left shadow-sm">
               <h3 className="font-serif text-lg font-extrabold text-[#1f3f21] border-b border-[#8c6239]/10 pb-2" style={{ fontFamily: "var(--font-cormorant), serif" }}>
                 Who Can Apply
               </h3>
@@ -513,8 +512,8 @@ export default function InternshipPage() {
               </ul>
             </div>
 
-            {/* Benefits */}
-            <div className="lg:col-span-6 bg-[#f7f2e9]/75 border border-[#8c6239]/15 p-6 rounded-[2rem] space-y-4 text-left">
+            {/* Benefits - Made solid bg-[#f7f2e9] */}
+            <div className="lg:col-span-6 bg-[#f7f2e9] border border-[#8c6239]/15 p-6 rounded-[2rem] space-y-4 text-left shadow-sm">
               <h3 className="font-serif text-lg font-extrabold text-[#1f3f21] border-b border-[#8c6239]/10 pb-2" style={{ fontFamily: "var(--font-cormorant), serif" }}>
                 Program Benefits
               </h3>
@@ -651,7 +650,7 @@ export default function InternshipPage() {
                 { name: "Madhava's", desc: "Healthy Lifestyle" },
                 { name: "Maghava's Eco Village", desc: "Sustainable Living" }
               ].map((org) => (
-                <div key={org.name} className="px-5 py-3 rounded-2xl border border-[#8c6239]/15 bg-white/70 backdrop-blur shadow-sm text-center min-w-[150px] flex flex-col justify-center gap-0.5 hover:border-[#1f3f21] hover:-translate-y-0.5 transition-all duration-200">
+                <div key={org.name} className="px-5 py-3 rounded-2xl border border-[#8c6239]/15 bg-white shadow-sm text-center min-w-[150px] flex flex-col justify-center gap-0.5 hover:border-[#1f3f21] hover:-translate-y-0.5 transition-all duration-200">
                   <span className="font-serif text-xs font-extrabold text-[#1f3f21]">{org.name}</span>
                   <span className="text-[7px] uppercase tracking-widest text-[#8c6239] font-bold">{org.desc}</span>
                 </div>
