@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Cormorant_Garamond, Inter } from "next/font/google";
 import { 
   Briefcase, 
@@ -18,7 +19,11 @@ import {
   FileText,
   UserCheck,
   Mail,
-  X
+  X,
+  Compass,
+  Zap,
+  Globe,
+  Sparkles
 } from "lucide-react";
 
 const cormorant = Cormorant_Garamond({
@@ -75,14 +80,17 @@ export default function InternshipPage() {
 
   return (
     <main 
-      className={`${cormorant.variable} ${inter.variable} min-h-screen bg-[#f7f2e9] py-20 px-6 text-[#2c2c2c] antialiased relative`}
+      className={`${cormorant.variable} ${inter.variable} relative min-h-screen bg-transparent antialiased text-[#2c2c2c]`}
       style={{ fontFamily: "var(--font-inter), sans-serif" }}
     >
-      
-      {/* Background decoration matching brand style */}
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#8c6239]/10 via-transparent to-transparent pointer-events-none" />
+      {/* Sunlit Forest & Stone Arch Fixed Background (Page 3 Background in PDF) */}
+      <div 
+        className="fixed inset-0 -z-10 bg-cover bg-center bg-fixed transition-all duration-700" 
+        style={{ backgroundImage: "url('/images/bg_combined.jpg')" }}
+      />
+      <div className="fixed inset-0 -z-10 bg-[#faf8f5]/90 backdrop-blur-[4px]" />
 
-      <div className="max-w-5xl mx-auto space-y-20 relative z-10">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 relative z-10 space-y-16">
         
         {/* Breadcrumb Navigation */}
         <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] text-[#8c6239]/70">
@@ -91,496 +99,468 @@ export default function InternshipPage() {
           <span className="text-[#1f3f21]">Internship Program</span>
         </div>
 
-        {/* Hero Section with Replicated Typography */}
-        <section className="text-center space-y-8 max-w-3xl mx-auto py-4">
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/70 border border-[#8c6239]/15 text-[10px] font-bold uppercase tracking-[0.25em] text-[#1f3f21] shadow-sm backdrop-blur">
-            SATTVIC • PURE • NOURISHING
-          </span>
-          
-          <div className="space-y-4">
-            <h1 
-              className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-[#1f3f21] leading-[1.15]"
-              style={{ fontFamily: "var(--font-cormorant), serif" }}
-            >
-              VRNDA Industry <br className="hidden sm:inline" /> Internship Program
+        {/* Master Logo Header (Flyer Header Copy) */}
+        <header className="flex flex-col md:flex-row items-center justify-between bg-white/70 border border-[#8c6239]/15 p-6 md:p-8 rounded-[2rem] shadow-sm backdrop-blur-md gap-6">
+          <div className="flex items-center gap-4">
+            <div className="relative w-14 h-14 bg-white rounded-full overflow-hidden border border-[#8c6239]/15 flex items-center justify-center p-1">
+              <Image src="/images/logo.jpeg" alt="Vrnda Logo" width={56} height={56} className="object-contain" />
+            </div>
+            <div>
+              <span className="text-[10px] font-extrabold uppercase tracking-[0.2em] text-[#8c6239] block">ROOTED IN DEVOTION</span>
+              <h2 className="font-serif text-xl sm:text-2xl font-bold text-[#1f3f21] leading-tight mt-0.5" style={{ fontFamily: "var(--font-cormorant), serif" }}>
+                VRNDA
+              </h2>
+            </div>
+          </div>
+
+          <div className="text-center">
+            <h1 className="font-serif text-2xl sm:text-3xl font-extrabold text-[#1f3f21] uppercase tracking-wider leading-tight" style={{ fontFamily: "var(--font-cormorant), serif" }}>
+              INDUSTRY INTERNSHIP PROGRAM
             </h1>
-            <p 
-              className="text-xl md:text-2xl italic text-[#8c6239] font-medium tracking-wide"
-              style={{ fontFamily: "var(--font-cormorant), serif" }}
-            >
-              "Learn. Contribute. Build the Future."
+            <span className="text-[10px] font-bold text-[#8c6239] tracking-widest uppercase block mt-1">
+              An Initiative by ISKCON Mangalore
+            </span>
+          </div>
+
+          <div className="text-right hidden md:block">
+            <div className="border-l border-[#8c6239]/20 pl-4 py-1 text-left">
+              <span className="text-[9px] font-bold uppercase text-[#8c6239] block leading-none">Srila Prabhupada's</span>
+              <span className="font-serif text-sm font-extrabold text-[#1f3f21] block tracking-wide" style={{ fontFamily: "var(--font-cormorant), serif" }}>
+                ISKCON
+              </span>
+              <span className="text-[9px] font-bold text-[#2c2c2c]/60 uppercase tracking-widest block leading-none mt-0.5">MANGALORE</span>
+            </div>
+          </div>
+        </header>
+
+        {/* SECTION 1: Values-Driven Enterprise (Page 1) */}
+        <section className="bg-white/60 border border-[#8c6239]/10 p-8 md:p-12 rounded-[2.5rem] shadow-xl backdrop-blur space-y-12">
+          
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            
+            {/* Left: Building Values-Driven Enterprise */}
+            <div className="lg:col-span-6 space-y-4">
+              <h2 className="font-serif text-3xl md:text-4xl font-extrabold text-[#1f3f21] leading-tight tracking-tight" style={{ fontFamily: "var(--font-cormorant), serif" }}>
+                Building a Values-Driven Enterprise
+              </h2>
+              <div className="w-16 h-0.5 bg-[#8c6239]" />
+              <p className="text-sm leading-relaxed text-[#2c2c2c]/85 font-semibold pt-2">
+                VRNDA is a values-driven initiative of ISKCON Mangalore focused on building a professionally managed enterprise offering premium food products and significant experiences through restaurant, retail, e-commerce and collaborations.
+              </p>
+              <p className="text-sm leading-relaxed text-[#2c2c2c]/85 font-semibold">
+                We create meaningful value for customers, communities and future business leaders.
+              </p>
+            </div>
+
+            {/* Right: Vision & Mission */}
+            <div className="lg:col-span-6 space-y-6">
+              <div className="bg-[#f7f2e9]/75 border border-[#8c6239]/15 p-6 rounded-2xl space-y-2">
+                <h3 className="font-serif text-lg font-bold text-[#1f3f21] uppercase tracking-wider" style={{ fontFamily: "var(--font-cormorant), serif" }}>
+                  Our Vision
+                </h3>
+                <p className="text-xs text-[#2c2c2c]/80 font-medium leading-relaxed">
+                  To be one of India's most respected values-driven enterprises known for quality, integrity and positive impact.
+                </p>
+              </div>
+
+              <div className="bg-[#f7f2e9]/75 border border-[#8c6239]/15 p-6 rounded-2xl space-y-3">
+                <h3 className="font-serif text-lg font-bold text-[#1f3f21] uppercase tracking-wider" style={{ fontFamily: "var(--font-cormorant), serif" }}>
+                  Our Mission
+                </h3>
+                <ul className="text-xs text-[#2c2c2c]/85 font-semibold space-y-2">
+                  <li className="flex items-center gap-2"><CheckCircle className="w-3.5 h-3.5 text-[#1f3f21] shrink-0" /> Deliver premium quality products</li>
+                  <li className="flex items-center gap-2"><CheckCircle className="w-3.5 h-3.5 text-[#1f3f21] shrink-0" /> Create memorable customer experiences</li>
+                  <li className="flex items-center gap-2"><CheckCircle className="w-3.5 h-3.5 text-[#1f3f21] shrink-0" /> Promote ethical and sustainable business</li>
+                  <li className="flex items-center gap-2"><CheckCircle className="w-3.5 h-3.5 text-[#1f3f21] shrink-0" /> Empower communities</li>
+                  <li className="flex items-center gap-2"><CheckCircle className="w-3.5 h-3.5 text-[#1f3f21] shrink-0" /> Develop future business leaders</li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+
+          {/* Business focus Areas */}
+          <div className="space-y-6">
+            <div className="text-center space-y-2">
+              <h3 className="font-serif text-2xl font-bold text-[#1f3f21]" style={{ fontFamily: "var(--font-cormorant), serif" }}>What We Focus On</h3>
+              <p className="text-xs text-[#8c6239] font-bold uppercase tracking-widest">We operate across multiple business verticals that create value for people and society</p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+              {[
+                { title: "Premium Food Products", bg: "/images/bg_coconut.jpg", desc: "Pure organic ghee, honey, moringa, coconut oil, and wood-fired masala." },
+                { title: "Restaurant & Café", bg: "/images/bg_honey.jpg", desc: "Offering clean, organic, and sanctified dining experiences." },
+                { title: "Retail Outlets", bg: "/images/bg_masala.jpg", desc: "Direct physical outlets serving values-driven premium items." },
+                { title: "E-Commerce", bg: "/images/bg_ghee.jpg", desc: "Sleek, frictionless digital shopping cart and shipping systems." },
+                { title: "Business Collaborations", bg: "/images/bg_moringa.jpg", desc: "Cooperative partnerships with agricultural communities." }
+              ].map((vertical) => (
+                <div 
+                  key={vertical.title} 
+                  className="relative rounded-2xl overflow-hidden border border-[#8c6239]/15 group h-52 shadow-sm flex flex-col justify-end p-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
+                  style={{ backgroundImage: `url(${vertical.bg})`, backgroundSize: "cover", backgroundPosition: "center" }}
+                >
+                  <div className="absolute inset-0 bg-[#1f3f21]/80 transition-colors group-hover:bg-[#1f3f21]/85 z-0" />
+                  <div className="relative z-10 space-y-1.5 text-white text-left">
+                    <h4 className="font-serif text-sm font-bold text-[#f7f2e9]" style={{ fontFamily: "var(--font-cormorant), serif" }}>{vertical.title}</h4>
+                    <p className="text-[9px] text-[#f7f2e9]/85 font-medium leading-relaxed">{vertical.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Page 1 Banner Quote */}
+          <div className="bg-[#1f3f21] text-[#f7f2e9] p-6 rounded-2xl text-center shadow-md border-l-4 border-l-[#8c6239]">
+            <p className="font-serif text-base italic" style={{ fontFamily: "var(--font-cormorant), serif" }}>
+              "We are building an organization that delivers products and services with purity, quality, and devotion."
             </p>
           </div>
 
-          <p className="text-base leading-relaxed text-[#2c2c2c]/70 max-w-xl mx-auto font-medium">
-            A comprehensive gateway for aspiring leaders to get real-world business exposure, work on live strategic projects, and champion bio-diverse cooperative farming products.
-          </p>
-
-          <div className="pt-4 font-semibold">
-            <button 
-              onClick={() => setIsModalOpen(true)}
-              className="inline-flex items-center gap-3 px-8 py-4 bg-[#1f3f21] text-white text-xs font-bold uppercase tracking-widest rounded-2xl hover:bg-[#8c6239] hover:shadow-lg transition-all duration-300"
-            >
-              Apply for Internship <ArrowRight className="w-4 h-4" />
-            </button>
-          </div>
         </section>
 
-        {/* Key Benefits Grid Section */}
-        <section className="space-y-12">
-          <div className="text-center space-y-3">
-            <h2 
-              className="text-3xl font-bold text-[#1f3f21] tracking-tight"
-              style={{ fontFamily: "var(--font-cormorant), serif" }}
-            >
-              Key Program Pillars
-            </h2>
-            <p className="text-xs text-[#8c6239] font-bold uppercase tracking-[0.2em]">What makes our program unique</p>
-            <div className="w-12 h-0.5 bg-[#8c6239]/30 mx-auto" />
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            
-            {/* Card 1 */}
-            <div className="rounded-[32px] border border-[#8c6239]/10 bg-white/80 p-8 shadow-sm backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:shadow-xl space-y-4">
-              <div className="w-12 h-12 rounded-2xl bg-[#8c6239]/10 flex items-center justify-center text-[#8c6239]">
-                <Briefcase className="w-5.5 h-5.5" />
-              </div>
-              <h3 
-                className="text-xl font-bold text-[#1f3f21] tracking-tight"
-                style={{ fontFamily: "var(--font-cormorant), serif" }}
-              >
-                Real Business Exposure
-              </h3>
-              <p className="text-sm text-[#2c2c2c]/70 leading-relaxed font-semibold">
-                Step beyond textbook cases. Engage directly with real-world supply chain flows, rural producer organizations, and direct-to-consumer pipelines.
-              </p>
-            </div>
-
-            {/* Card 2 */}
-            <div className="rounded-[32px] border border-[#8c6239]/10 bg-white/80 p-8 shadow-sm backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:shadow-xl space-y-4">
-              <div className="w-12 h-12 rounded-2xl bg-[#8c6239]/10 flex items-center justify-center text-[#8c6239]">
-                <GraduationCap className="w-5.5 h-5.5" />
-              </div>
-              <h3 
-                className="text-xl font-bold text-[#1f3f21] tracking-tight"
-                style={{ fontFamily: "var(--font-cormorant), serif" }}
-              >
-                Learn from Experts
-              </h3>
-              <p className="text-sm text-[#2c2c2c]/70 leading-relaxed font-semibold">
-                Receive direct mentoring from industry leaders, alumni from elite institutions (IIT/IIM), and experienced cooperative management experts.
-              </p>
-            </div>
-
-            {/* Card 3 */}
-            <div className="rounded-[32px] border border-[#8c6239]/10 bg-white/80 p-8 shadow-sm backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:shadow-xl space-y-4">
-              <div className="w-12 h-12 rounded-2xl bg-[#8c6239]/10 flex items-center justify-center text-[#8c6239]">
-                <BookOpen className="w-5.5 h-5.5" />
-              </div>
-              <h3 
-                className="text-xl font-bold text-[#1f3f21] tracking-tight"
-                style={{ fontFamily: "var(--font-cormorant), serif" }}
-              >
-                Cross-Functional Learning
-              </h3>
-              <p className="text-sm text-[#2c2c2c]/70 leading-relaxed font-semibold">
-                Experience operations from 360 degrees. Rotate through marketing campaigns, microfinance operations, quality testing, and logistics.
-              </p>
-            </div>
-
-            {/* Card 4 */}
-            <div className="rounded-[32px] border border-[#8c6239]/10 bg-white/80 p-8 shadow-sm backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:shadow-xl space-y-4">
-              <div className="w-12 h-12 rounded-2xl bg-[#8c6239]/10 flex items-center justify-center text-[#8c6239]">
-                <TrendingUp className="w-5.5 h-5.5" />
-              </div>
-              <h3 
-                className="text-xl font-bold text-[#1f3f21] tracking-tight"
-                style={{ fontFamily: "var(--font-cormorant), serif" }}
-              >
-                Build Leadership Skills
-              </h3>
-              <p className="text-sm text-[#2c2c2c]/70 leading-relaxed font-semibold">
-                Own high-impact campaigns, coordinate farmer workshops, and lead student cooperative circles. Shape your leadership style in real-time.
-              </p>
-            </div>
-
-            {/* Card 5 */}
-            <div className="rounded-[32px] border border-[#8c6239]/10 bg-white/80 p-8 shadow-sm backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:shadow-xl space-y-4">
-              <div className="w-12 h-12 rounded-2xl bg-[#8c6239]/10 flex items-center justify-center text-[#8c6239]">
-                <Award className="w-5.5 h-5.5" />
-              </div>
-              <h3 
-                className="text-xl font-bold text-[#1f3f21] tracking-tight"
-                style={{ fontFamily: "var(--font-cormorant), serif" }}
-              >
-                Career Advantage
-              </h3>
-              <p className="text-sm text-[#2c2c2c]/70 leading-relaxed font-semibold">
-                Enhance your resume with a cooperative internship certificate, recommendation letters, and potential pre-placement opportunities.
-              </p>
-            </div>
-
-            {/* Card 6 */}
-            <div className="rounded-[32px] border border-[#8c6239]/10 bg-white/80 p-8 shadow-sm backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:shadow-xl space-y-4">
-              <div className="w-12 h-12 rounded-2xl bg-[#8c6239]/10 flex items-center justify-center text-[#8c6239]">
-                <Target className="w-5.5 h-5.5" />
-              </div>
-              <h3 
-                className="text-xl font-bold text-[#1f3f21] tracking-tight"
-                style={{ fontFamily: "var(--font-cormorant), serif" }}
-              >
-                Purpose-Driven Environment
-              </h3>
-              <p className="text-sm text-[#2c2c2c]/70 leading-relaxed font-semibold">
-                Contribute to organic agriculture, sustainable packaging standards, and fair-wage farmer cooperative movements across rural India.
-              </p>
-            </div>
-
-          </div>
-        </section>
-
-        {/* Highlights & Target Audience Section */}
-        <section className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+        {/* SECTION 2: Why Join / Key Benefits (Page 2) */}
+        <section className="bg-white/60 border border-[#8c6239]/10 p-8 md:p-12 rounded-[2.5rem] shadow-xl backdrop-blur space-y-12">
           
-          {/* Program Highlights */}
-          <div className="lg:col-span-7 rounded-[32px] border border-[#8c6239]/10 bg-white/80 p-8 md:p-10 shadow-sm backdrop-blur flex flex-col justify-center space-y-8">
-            <div className="space-y-2">
-              <h3 
-                className="text-2xl font-bold text-[#1f3f21] tracking-tight"
-                style={{ fontFamily: "var(--font-cormorant), serif" }}
-              >
-                Program Highlights
-              </h3>
-              <div className="w-12 h-0.5 bg-[#8c6239]/20" />
-            </div>
-            
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              
-              <div className="flex items-start gap-3.5">
-                <div className="w-8 h-8 rounded-lg bg-[#8c6239]/5 flex items-center justify-center text-[#8c6239] shrink-0 mt-0.5">
-                  <Clock className="w-4 h-4" />
-                </div>
-                <div>
-                  <h4 className="text-[10px] font-bold uppercase tracking-wider text-[#1f3f21]">Duration</h4>
-                  <p className="text-xs md:text-sm text-[#2c2c2c]/80 font-bold mt-0.5">2 - 6 Months Residency</p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-3.5">
-                <div className="w-8 h-8 rounded-lg bg-[#8c6239]/5 flex items-center justify-center text-[#8c6239] shrink-0 mt-0.5">
-                  <Briefcase className="w-4 h-4" />
-                </div>
-                <div>
-                  <h4 className="text-[10px] font-bold uppercase tracking-wider text-[#1f3f21]">Projects</h4>
-                  <p className="text-xs md:text-sm text-[#2c2c2c]/80 font-bold mt-0.5">Live Business Operations</p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-3.5">
-                <div className="w-8 h-8 rounded-lg bg-[#8c6239]/5 flex items-center justify-center text-[#8c6239] shrink-0 mt-0.5">
-                  <Users className="w-4 h-4" />
-                </div>
-                <div>
-                  <h4 className="text-[10px] font-bold uppercase tracking-wider text-[#1f3f21]">Advisory</h4>
-                  <p className="text-xs md:text-sm text-[#2c2c2c]/80 font-bold mt-0.5">1-on-1 Executive Mentorship</p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-3.5">
-                <div className="w-8 h-8 rounded-lg bg-[#8c6239]/5 flex items-center justify-center text-[#8c6239] shrink-0 mt-0.5">
-                  <Award className="w-4 h-4" />
-                </div>
-                <div>
-                  <h4 className="text-[10px] font-bold uppercase tracking-wider text-[#1f3f21]">Recognition</h4>
-                  <p className="text-xs md:text-sm text-[#2c2c2c]/80 font-bold mt-0.5">Official Program Certificate</p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-3.5">
-                <div className="w-8 h-8 rounded-lg bg-[#8c6239]/5 flex items-center justify-center text-[#8c6239] shrink-0 mt-0.5">
-                  <CheckCircle className="w-4 h-4" />
-                </div>
-                <div>
-                  <h4 className="text-[10px] font-bold uppercase tracking-wider text-[#1f3f21]">Advocacy</h4>
-                  <p className="text-xs md:text-sm text-[#2c2c2c]/80 font-bold mt-0.5">Letter of Recommendation</p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-3.5">
-                <div className="w-8 h-8 rounded-lg bg-[#8c6239]/5 flex items-center justify-center text-[#8c6239] shrink-0 mt-0.5">
-                  <TrendingUp className="w-4 h-4" />
-                </div>
-                <div>
-                  <h4 className="text-[10px] font-bold uppercase tracking-wider text-[#1f3f21]">Placements</h4>
-                  <p className="text-xs md:text-sm text-[#2c2c2c]/80 font-bold mt-0.5">Pre-Placement Opportunities</p>
-                </div>
-              </div>
-
-            </div>
+          <div className="text-center space-y-3">
+            <h2 className="font-serif text-3xl font-extrabold text-[#1f3f21] tracking-tight" style={{ fontFamily: "var(--font-cormorant), serif" }}>
+              Why Join the VRNDA Industry Internship Program?
+            </h2>
+            <p className="text-xs text-[#8c6239] font-bold uppercase tracking-[0.2em] italic">
+              "A meaningful internship that prepares you for real-world success."
+            </p>
+            <div className="w-12 h-0.5 bg-[#8c6239] mx-auto" />
           </div>
 
-          {/* Target Audience */}
-          <div className="lg:col-span-5 bg-[#1f3f21] text-[#f7f2e9] p-8 md:p-10 rounded-[32px] shadow-xl flex flex-col justify-between space-y-8">
-            <div className="space-y-4">
-              <h3 
-                className="text-2xl font-bold tracking-tight"
-                style={{ fontFamily: "var(--font-cormorant), serif" }}
+          {/* 6 Key Benefits Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              { num: "01", title: "Real Business Exposure", desc: "Work on real-time projects that create impact." },
+              { num: "02", title: "Learn from Experts", desc: "Guidance and mentorship from industry professionals." },
+              { num: "03", title: "Cross-Functional Learning", desc: "Experience across diverse departments and business functions." },
+              { num: "04", title: "Build Leadership Skills", desc: "Take ownership, solve problems, and lead with confidence." },
+              { num: "05", title: "Career Advantage", desc: "Earn an advantage, LOR and potential PPO based on performance." },
+              { num: "06", title: "Purpose-Driven Environment", desc: "Be part of a values-driven organization creating value for society." }
+            ].map((pillar) => (
+              <div 
+                key={pillar.num} 
+                className="rounded-3xl border border-[#8c6239]/10 bg-white/70 p-6 shadow-sm backdrop-blur transition-all duration-300 hover:-translate-y-1 hover:shadow-md space-y-3 text-left relative overflow-hidden"
               >
-                Who Should Apply?
-              </h3>
-              <p className="text-xs md:text-sm text-[#f7f2e9]/80 leading-relaxed font-medium">
-                We are looking for self-motivated, proactive, and values-driven change-makers who are ready to make a tangible impact.
-              </p>
-              
-              <div className="border-t border-[#f7f2e9]/15 pt-6 space-y-4">
-                <span className="text-[9px] font-bold uppercase tracking-widest text-[#8c6239] block">Target Audience</span>
-                <p className="text-xs md:text-sm text-[#f7f2e9]/95 font-medium leading-relaxed">
-                  Final-Year MBA or Degree students interested in building careers in:
+                <div className="absolute right-4 top-4 text-4xl font-serif font-extrabold text-[#8c6239]/10 select-none">{pillar.num}</div>
+                <div className="w-8 h-8 rounded-lg bg-[#8c6239]/10 flex items-center justify-center text-[#8c6239] font-bold text-xs">
+                  {pillar.num}
+                </div>
+                <h3 className="text-lg font-bold text-[#1f3f21] tracking-tight" style={{ fontFamily: "var(--font-cormorant), serif" }}>
+                  {pillar.title}
+                </h3>
+                <p className="text-xs text-[#2c2c2c]/75 leading-relaxed font-semibold">
+                  {pillar.desc}
                 </p>
-                
-                <div className="flex flex-wrap gap-2 pt-1 font-semibold">
-                  {["Business", "Marketing", "Finance", "HR", "Operations", "Entrepreneurship"].map((domain) => (
-                    <span 
-                      key={domain} 
-                      className="px-3 py-1 rounded-lg bg-[#f7f2e9]/10 text-[10px] font-bold uppercase tracking-widest"
-                    >
-                      {domain}
+              </div>
+            ))}
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch pt-4">
+            
+            {/* Internship Highlights Table */}
+            <div className="lg:col-span-6 bg-[#f7f2e9]/75 border border-[#8c6239]/15 p-6 rounded-[2rem] space-y-4">
+              <h3 className="font-serif text-lg font-extrabold text-[#1f3f21] uppercase tracking-wider border-b border-[#8c6239]/10 pb-2" style={{ fontFamily: "var(--font-cormorant), serif" }}>
+                Internship Highlights
+              </h3>
+              <div className="divide-y divide-[#8c6239]/10 text-xs font-semibold">
+                {[
+                  { label: "Duration", val: "6 Months" },
+                  { label: "Live Business Projects", val: "Real Impact" },
+                  { label: "Mentorship", val: "Industry Experts" },
+                  { label: "Certificate", val: "Upon Completion" },
+                  { label: "Letter of Recommendation", val: "For Eligible Interns" },
+                  { label: "PPO Opportunity", val: "Based on Performance" }
+                ].map((row) => (
+                  <div key={row.label} className="py-2.5 flex justify-between gap-4">
+                    <span className="text-[#2c2c2c]/55">{row.label}</span>
+                    <span className="text-[#1f3f21] font-bold text-right">{row.val}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Target streams and skills */}
+            <div className="lg:col-span-6 flex flex-col justify-between gap-6">
+              
+              <div className="bg-[#1f3f21] text-[#f7f2e9] p-6 rounded-[2rem] shadow-md space-y-4">
+                <h3 className="font-serif text-lg font-bold tracking-wider" style={{ fontFamily: "var(--font-cormorant), serif" }}>
+                  Who Can Apply
+                </h3>
+                <div className="space-y-1.5 text-xs text-[#f7f2e9]/80 font-medium">
+                  <p className="font-bold text-white">MBA | BBA | Commerce</p>
+                  <p>Marketing | Finance | HR | Operations</p>
+                  <p>Entrepreneurship & related folds</p>
+                </div>
+              </div>
+
+              <div className="bg-white/70 border border-[#8c6239]/15 p-6 rounded-[2rem] space-y-3 flex-grow">
+                <h3 className="font-serif text-lg font-extrabold text-[#1f3f21]" style={{ fontFamily: "var(--font-cormorant), serif" }}>
+                  Skills You Will Develop
+                </h3>
+                <div className="flex flex-wrap gap-1.5 pt-1 text-[9px] font-bold uppercase tracking-wider text-[#1f3f21]">
+                  {[
+                    "Business Planning", "Market Research", "Financial Analysis", 
+                    "Leadership", "Communication", "Team Management", 
+                    "Negotiation", "Business Strategy", "Project Management", 
+                    "Analytics", "Presentation Skills", "Customer Insight"
+                  ].map((skill) => (
+                    <span key={skill} className="px-2.5 py-1 rounded bg-[#8c6239]/10 border border-[#8c6239]/15">
+                      {skill}
                     </span>
                   ))}
                 </div>
               </div>
+
             </div>
-            
-            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#8c6239] block border-t border-[#f7f2e9]/15 pt-4">
-              * Open to all locations (Remote/Hybrid options available)
+
+          </div>
+
+          <div className="text-center pt-2">
+            <span className="font-serif text-xl italic font-semibold text-[#8c6239]" style={{ fontFamily: "var(--font-cormorant), serif" }}>
+              "Learn by Doing. Grow by Leading."
             </span>
           </div>
 
         </section>
 
-        {/* Application Process Horizontal Timeline */}
-        <section className="space-y-12 rounded-[32px] border border-[#8c6239]/10 bg-white/80 p-8 md:p-12 shadow-sm backdrop-blur">
+        {/* SECTION 3: Internship Experience & Mentor (Page 3) */}
+        <section className="bg-white/60 border border-[#8c6239]/10 p-8 md:p-12 rounded-[2.5rem] shadow-xl backdrop-blur space-y-12">
+          
           <div className="text-center space-y-3">
-            <h2 
-              className="text-3xl font-bold text-[#1f3f21] tracking-tight"
-              style={{ fontFamily: "var(--font-cormorant), serif" }}
-            >
-              Application Process
+            <h2 className="font-serif text-3xl font-extrabold text-[#1f3f21] tracking-tight" style={{ fontFamily: "var(--font-cormorant), serif" }}>
+              INTERNSHIP EXPERIENCE
             </h2>
-            <p className="text-xs text-[#8c6239] font-bold uppercase tracking-[0.2em]">Five Steps to Join</p>
-            <div className="w-12 h-0.5 bg-[#8c6239]/30 mx-auto" />
+            <p className="text-xs text-[#8c6239] font-bold uppercase tracking-[0.2em] italic">
+              "Learn Through Real Business"
+            </p>
+            <div className="w-12 h-0.5 bg-[#8c6239] mx-auto" />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-4 relative">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             
-            {/* Step 1 */}
-            <div className="text-center space-y-3 relative group">
-              <div className="w-12 h-12 rounded-full bg-[#1f3f21] text-white font-serif font-bold text-base mx-auto flex items-center justify-center border-4 border-[#f7f2e9] shadow transition-transform duration-300 group-hover:scale-105">
-                1
-              </div>
-              <h4 className="font-bold text-xs text-[#1f3f21] uppercase tracking-wider">Application</h4>
-              <p className="text-[11px] text-[#2c2c2c]/70 leading-relaxed max-w-[150px] mx-auto font-semibold">
-                Submit your CV via our direct email application link.
-              </p>
+            {/* What you will work on */}
+            <div className="lg:col-span-6 bg-[#f7f2e9]/75 border border-[#8c6239]/15 p-6 rounded-[2rem] space-y-4">
+              <h3 className="font-serif text-lg font-extrabold text-[#1f3f21] border-b border-[#8c6239]/10 pb-2" style={{ fontFamily: "var(--font-cormorant), serif" }}>
+                What You Will Work On
+              </h3>
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2.5 text-xs text-[#2c2c2c]/85 font-semibold">
+                {[
+                  "Business Strategy",
+                  "Marketing & Brand Development",
+                  "Sales & Business Development",
+                  "Operations & Supply Chain",
+                  "Product Development",
+                  "Retail & Customer Experience",
+                  "Restaurant Operations",
+                  "E-Commerce"
+                ].map((item) => (
+                  <li key={item} className="flex items-center gap-2">
+                    <Sparkles className="w-3.5 h-3.5 text-[#8c6239] shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
             </div>
 
-            {/* Step 2 */}
-            <div className="text-center space-y-3 relative group">
-              <div className="w-12 h-12 rounded-full bg-[#1f3f21] text-white font-serif font-bold text-base mx-auto flex items-center justify-center border-4 border-[#f7f2e9] shadow transition-transform duration-300 group-hover:scale-105">
-                2
-              </div>
-              <h4 className="font-bold text-xs text-[#1f3f21] uppercase tracking-wider">Screening</h4>
-              <p className="text-[11px] text-[#2c2c2c]/70 leading-relaxed max-w-[150px] mx-auto font-semibold">
-                Our selection board reviews candidates based on core alignment.
-              </p>
-            </div>
-
-            {/* Step 3 */}
-            <div className="text-center space-y-3 relative group">
-              <div className="w-12 h-12 rounded-full bg-[#1f3f21] text-white font-serif font-bold text-base mx-auto flex items-center justify-center border-4 border-[#f7f2e9] shadow transition-transform duration-300 group-hover:scale-105">
-                3
-              </div>
-              <h4 className="font-bold text-xs text-[#1f3f21] uppercase tracking-wider">Interview</h4>
-              <p className="text-[11px] text-[#2c2c2c]/70 leading-relaxed max-w-[150px] mx-auto font-semibold">
-                Participate in a personal discussion with operational leads.
-              </p>
-            </div>
-
-            {/* Step 4 */}
-            <div className="text-center space-y-3 relative group">
-              <div className="w-12 h-12 rounded-full bg-[#1f3f21] text-white font-serif font-bold text-base mx-auto flex items-center justify-center border-4 border-[#f7f2e9] shadow transition-transform duration-300 group-hover:scale-105">
-                4
-              </div>
-              <h4 className="font-bold text-xs text-[#1f3f21] uppercase tracking-wider">Offer Letter</h4>
-              <p className="text-[11px] text-[#2c2c2c]/70 leading-relaxed max-w-[150px] mx-auto font-semibold">
-                Selected candidates receive an official internship placement offer.
-              </p>
-            </div>
-
-            {/* Step 5 */}
-            <div className="text-center space-y-3 relative group">
-              <div className="w-12 h-12 rounded-full bg-[#1f3f21] text-white font-serif font-bold text-base mx-auto flex items-center justify-center border-4 border-[#f7f2e9] shadow transition-transform duration-300 group-hover:scale-105">
-                5
-              </div>
-              <h4 className="font-bold text-xs text-[#1f3f21] uppercase tracking-wider">Onboarding</h4>
-              <p className="text-[11px] text-[#2c2c2c]/70 leading-relaxed max-w-[150px] mx-auto font-semibold">
-                Complete team onboarding and initiate your cooperative rotation.
+            {/* Learning Approach */}
+            <div className="lg:col-span-6 bg-[#f7f2e9]/75 border border-[#8c6239]/15 p-6 rounded-[2rem] space-y-4">
+              <h3 className="font-serif text-lg font-extrabold text-[#1f3f21] border-b border-[#8c6239]/10 pb-2" style={{ fontFamily: "var(--font-cormorant), serif" }}>
+                Learning Approach
+              </h3>
+              <p className="text-xs leading-relaxed text-[#2c2c2c]/80 font-medium">
+                At VRNDA, interns work on real business initiatives under professional guidance. The program is designed to provide practical experience, cross functional exposure and meaningful responsibilities that prepare students for management careers.
               </p>
             </div>
 
           </div>
-        </section>
 
-        {/* Mentor Profile Editorial Card */}
-        <section className="rounded-[32px] border border-[#8c6239]/10 bg-white/80 p-8 md:p-12 shadow-xl max-w-4xl mx-auto border-l-4 border-l-[#1f3f21] backdrop-blur">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-            
-            {/* Vector Silhouette in a sharp black suit */}
-            <div className="md:col-span-4 flex justify-center">
-              <div className="relative">
-                <svg viewBox="0 0 100 100" className="w-36 h-36 rounded-full border border-brand-brown/20 bg-brand-light/50 p-1.5 shadow-md">
-                  {/* Background backdrop glow */}
-                  <circle cx="50" cy="50" r="48" fill="#fcfcfb" />
-                  {/* Sharp Black Suit jacket shoulders */}
-                  <path d="M15 95 C 15 72, 30 62, 50 62 C 70 62, 85 72, 85 95 Z" fill="#18181b" />
-                  {/* Suit Lapels */}
-                  <path d="M28 95 L40 68 L50 82 L60 68 L72 95 Z" fill="#09090b" />
-                  {/* White Shirt V-neck */}
-                  <path d="M40 62 L50 78 L60 62 Z" fill="#ffffff" />
-                  {/* Forest Green Tie */}
-                  <path d="M47 67 L53 67 L52 86 L48 86 Z" fill="#1f3f21" />
-                  {/* Skin tone face */}
-                  <circle cx="50" cy="38" r="18" fill="#f5c7a0" />
-                  {/* Eyeglasses */}
-                  <rect x="36" y="34" width="10" height="4" rx="1" fill="none" stroke="#27272a" strokeWidth="1.5" />
-                  <rect x="54" y="34" width="10" height="4" rx="1" fill="none" stroke="#27272a" strokeWidth="1.5" />
-                  <line x1="46" y1="36" x2="54" y2="36" stroke="#27272a" strokeWidth="1.5" />
-                  {/* Trimmed Hair */}
-                  <path d="M30 36 C 30 20, 70 20, 70 36 C 70 23, 30 23, 30 36 Z" fill="#4a3728" />
-                </svg>
-                <div className="absolute -bottom-1 -right-1 bg-[#1f3f21] text-white p-2 rounded-full shadow border border-white/35">
-                  <UserCheck className="w-4 h-4" />
+          {/* Mentor Profile Editorial Card */}
+          <div className="rounded-[2.5rem] border border-[#8c6239]/15 bg-white/70 p-6 md:p-8 shadow-md max-w-4xl mx-auto border-l-4 border-l-[#1f3f21] backdrop-blur">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-center">
+              
+              {/* Vector Silhouette in a sharp black suit */}
+              <div className="md:col-span-4 flex justify-center">
+                <div className="relative">
+                  <svg viewBox="0 0 100 100" className="w-36 h-36 rounded-full border border-[#8c6239]/20 bg-gray-100 p-1 shadow-md">
+                    <circle cx="50" cy="50" r="48" fill="#fbfbf9" />
+                    {/* Suit details */}
+                    <path d="M15 95 C 15 72, 30 62, 50 62 C 70 62, 85 72, 85 95 Z" fill="#18181b" />
+                    <path d="M28 95 L40 68 L50 82 L60 68 L72 95 Z" fill="#09090b" />
+                    <path d="M40 62 L50 78 L60 62 Z" fill="#ffffff" />
+                    <path d="M47 67 L53 67 L52 86 L48 86 Z" fill="#1f3f21" />
+                    {/* Face skin */}
+                    <circle cx="50" cy="38" r="18" fill="#f5c7a0" />
+                    {/* Glasses */}
+                    <rect x="36" y="34" width="10" height="4" rx="1" fill="none" stroke="#27272a" strokeWidth="1.5" />
+                    <rect x="54" y="34" width="10" height="4" rx="1" fill="none" stroke="#27272a" strokeWidth="1.5" />
+                    <line x1="46" y1="36" x2="54" y2="36" stroke="#27272a" strokeWidth="1.5" />
+                    <path d="M30 36 C 30 20, 70 20, 70 36 C 70 23, 30 23, 30 36 Z" fill="#4a3728" />
+                  </svg>
+                  <div className="absolute -bottom-1 -right-1 bg-[#1f3f21] text-white p-2 rounded-full shadow border border-white">
+                    <UserCheck className="w-4 h-4" />
+                  </div>
                 </div>
               </div>
-            </div>
 
-            {/* Profile Info */}
-            <div className="md:col-span-8 space-y-4">
-              <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#8c6239] block">
-                Meet Your Mentor
-              </span>
-              <div>
-                <h3 
-                  className="text-2xl md:text-3xl font-bold text-[#1f3f21] tracking-tight"
-                  style={{ fontFamily: "var(--font-cormorant), serif" }}
-                >
-                  Sunil Kumar H. S.
-                </h3>
-                <p className="text-xs font-bold uppercase tracking-widest text-[#8c6239] mt-0.5">Industry Mentor & Operations Lead</p>
+              {/* Profile Details */}
+              <div className="md:col-span-8 space-y-3 text-left">
+                <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#8c6239] block">
+                  Meet Your Mentor
+                </span>
+                <div>
+                  <h3 className="text-2xl font-bold text-[#1f3f21] tracking-tight leading-none" style={{ fontFamily: "var(--font-cormorant), serif" }}>
+                    Sunil Kumar H. S.
+                  </h3>
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-[#8c6239] block mt-1">
+                    MBA, Indian Institute of Technology (IIT) Patna
+                  </span>
+                </div>
+                <p className="text-xs text-[#2c2c2c]/80 leading-relaxed font-medium">
+                  5+ years as Manager of Akshaya Patra Foundation. Extensive experience in restaurant management and business ownership.
+                </p>
+                <p className="text-xs text-[#2c2c2c]/80 leading-relaxed font-semibold italic border-t border-[#8c6239]/10 pt-2">
+                  "Sunil Kumar H.S. mentors interns through practical business exposure, structured guidance and collaborative project execution, helping students transform classroom learning into professional management capability."
+                </p>
               </div>
-              <p className="text-sm text-[#2c2c2c]/75 leading-relaxed font-semibold">
-                Sunil holds an MBA from the prestigious <strong className="text-[#1f3f21]">IIT Patna</strong> and brings over 5+ years of managerial and operational stewardship from <strong className="text-[#8c6239]">The Akshaya Patra Foundation</strong>. Under his leadership, interns gain hands-on experience in logistics planning, modern micro-business strategy, quality frameworks, and sustainable cooperative scaling.
-              </p>
+
+            </div>
+          </div>
+
+          <div className="text-center pt-2">
+            <span className="font-serif text-lg italic font-semibold text-[#1f3f21]" style={{ fontFamily: "var(--font-cormorant), serif" }}>
+              "Great leaders are shaped through meaningful work, continuous learning and purposeful mentorship."
+            </span>
+          </div>
+
+        </section>
+
+        {/* SECTION 4: Application Process & Details (Page 4) */}
+        <section className="bg-white/60 border border-[#8c6239]/10 p-8 md:p-12 rounded-[2.5rem] shadow-xl backdrop-blur space-y-12">
+          
+          <div className="text-center space-y-3">
+            <h2 className="font-serif text-3xl font-extrabold text-[#1f3f21] tracking-tight" style={{ fontFamily: "var(--font-cormorant), serif" }}>
+              APPLICATION PROCESS
+            </h2>
+            <div className="w-12 h-0.5 bg-[#8c6239] mx-auto" />
+          </div>
+
+          {/* 5 steps process bar */}
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-6 md:gap-4 relative pt-2">
+            {[
+              { step: "1", title: "Application", desc: "Submit your details via our online portal." },
+              { step: "2", title: "Resume Screening", desc: "Our recruitment board reviews each profile." },
+              { step: "3", title: "Personal Interview", desc: "Discuss goals with key operational leaders." },
+              { step: "4", title: "Offer Letter", desc: "Receive an official program placement offer." },
+              { step: "5", title: "Onboarding", desc: "Complete documentation and join the team." }
+            ].map((proc) => (
+              <div key={proc.step} className="text-center space-y-3 relative group">
+                <div className="w-10 h-10 rounded-full bg-[#1f3f21] text-white font-serif font-bold text-sm mx-auto flex items-center justify-center border-4 border-[#faf8f5] shadow-sm transition-transform duration-300 group-hover:scale-105">
+                  {proc.step}
+                </div>
+                <h4 className="font-bold text-xs text-[#1f3f21] uppercase tracking-wider">{proc.title}</h4>
+                <p className="text-[10px] text-[#2c2c2c]/75 leading-relaxed max-w-[140px] mx-auto font-medium">
+                  {proc.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch pt-4">
+            
+            {/* Eligibility */}
+            <div className="lg:col-span-6 bg-[#f7f2e9]/75 border border-[#8c6239]/15 p-6 rounded-[2rem] space-y-4">
+              <h3 className="font-serif text-lg font-extrabold text-[#1f3f21] border-b border-[#8c6239]/10 pb-2" style={{ fontFamily: "var(--font-cormorant), serif" }}>
+                Who Can Apply
+              </h3>
+              <ul className="text-xs text-[#2c2c2c]/85 font-semibold space-y-3">
+                <li className="flex items-start gap-2.5">
+                  <CheckCircle className="w-4 h-4 text-[#1f3f21] shrink-0 mt-0.5" />
+                  <div>
+                    <h5 className="font-bold text-[#1f3f21]">Final-Year MBA Students</h5>
+                    <p className="text-[10px] text-[#2c2c2c]/65 font-medium mt-0.5">Specializing in Marketing, Finance, HR, or Supply Chain.</p>
+                  </div>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <CheckCircle className="w-4 h-4 text-[#1f3f21] shrink-0 mt-0.5" />
+                  <div>
+                    <h5 className="font-bold text-[#1f3f21]">Final-Year Students from Any Degree Stream</h5>
+                    <p className="text-[10px] text-[#2c2c2c]/65 font-medium mt-0.5">Highly motivated individuals with a strong academic/extracurricular record.</p>
+                  </div>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <CheckCircle className="w-4 h-4 text-[#1f3f21] shrink-0 mt-0.5" />
+                  <div>
+                    <h5 className="font-bold text-[#1f3f21]">Entrepreneurial Thinkers</h5>
+                    <p className="text-[10px] text-[#2c2c2c]/65 font-medium mt-0.5">Aspiring business leaders, self-starters, and management candidates.</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            {/* Benefits */}
+            <div className="lg:col-span-6 bg-[#f7f2e9]/75 border border-[#8c6239]/15 p-6 rounded-[2rem] space-y-4">
+              <h3 className="font-serif text-lg font-extrabold text-[#1f3f21] border-b border-[#8c6239]/10 pb-2" style={{ fontFamily: "var(--font-cormorant), serif" }}>
+                Program Benefits
+              </h3>
+              <ul className="text-xs text-[#2c2c2c]/85 font-semibold space-y-2.5">
+                <li className="flex items-center gap-2"><CheckCircle className="w-3.5 h-3.5 text-[#1f3f21] shrink-0" /> Certificate of Completion</li>
+                <li className="flex items-center gap-2"><CheckCircle className="w-3.5 h-3.5 text-[#1f3f21] shrink-0" /> Performance Based Stipend*</li>
+                <li className="flex items-center gap-2"><CheckCircle className="w-3.5 h-3.5 text-[#1f3f21] shrink-0" /> Letter of Recommendation*</li>
+                <li className="flex items-center gap-2"><CheckCircle className="w-3.5 h-3.5 text-[#1f3f21] shrink-0" /> Performance Based Pre-Placement Opportunity*</li>
+              </ul>
+              <span className="block text-[9px] text-[#2c2c2c]/50 font-bold uppercase tracking-wider pt-2 border-t border-[#8c6239]/10">
+                *Based on individual performance and organizational requirements.
+              </span>
             </div>
 
           </div>
-        </section>
 
-        {/* Call to Action Statement */}
-        <section className="bg-[#8c6239]/5 border border-[#8c6239]/10 p-10 md:p-14 rounded-3xl text-center space-y-6">
-          <div className="w-12 h-12 rounded-full bg-[#1f3f21]/10 flex items-center justify-center text-[#1f3f21] mx-auto">
-            <Mail className="w-6 h-6" />
-          </div>
-          
-          <div className="space-y-2">
-            <h3 
-              className="text-2xl md:text-3xl font-bold text-[#1f3f21] tracking-tight"
-              style={{ fontFamily: "var(--font-cormorant), serif" }}
-            >
-              Ready to Begin Your Journey?
-            </h3>
-            <p className="text-sm text-[#2c2c2c]/70 max-w-lg mx-auto leading-relaxed font-semibold">
-              Applications are reviewed on a rolling basis. Please send your updated resume along with a brief cover statement to our recruitment panel.
-            </p>
-          </div>
-          
-          <div className="pt-2 font-semibold">
-            <button 
-              onClick={() => setIsModalOpen(true)}
-              className="inline-flex items-center gap-3 px-8 py-4 bg-[#1f3f21] text-white text-xs font-bold uppercase tracking-widest rounded-2xl hover:bg-[#8c6239] hover:shadow-lg transition-all duration-300"
-            >
-              Email Your Resume <FileText className="w-4 h-4" />
-            </button>
-          </div>
-        </section>
-
-      </div>
-
-      {/* Application Popup Modal */}
-      {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4 animate-in fade-in duration-200">
-          <div className="bg-[#fbfbf9] border border-[#8c6239]/15 rounded-3xl max-w-md w-full p-8 shadow-2xl space-y-6 relative animate-in zoom-in-95 duration-200">
-            
-            {/* Close Button */}
-            <button 
-              onClick={() => setIsModalOpen(false)}
-              className="absolute top-4 right-4 text-[#2c2c2c]/50 hover:text-[#2c2c2c] transition-colors p-1.5 rounded-lg hover:bg-black/5"
-            >
-              <X className="w-4.5 h-4.5" />
-            </button>
-
-            <div className="space-y-2 text-center">
-              <span className="text-[10px] font-bold uppercase tracking-widest text-[#8c6239] block">Internship Application</span>
-              <h3 
-                className="text-2xl font-bold text-[#1f3f21]"
-                style={{ fontFamily: "var(--font-cormorant), serif" }}
-              >
-                Apply for Internship
-              </h3>
-              <p className="text-[11px] text-[#2c2c2c]/60 max-w-xs mx-auto leading-relaxed font-semibold">
-                Submit your details. When you click submit, it will launch your email client pre-filled to email your resume directly to our board.
+          {/* Interactive Contact / Application Form */}
+          <div className="max-w-xl mx-auto bg-[#faf8f5] border border-[#8c6239]/15 p-8 rounded-[2rem] shadow-md space-y-6">
+            <div className="text-center space-y-2">
+              <div className="w-10 h-10 rounded-full bg-[#1f3f21]/10 flex items-center justify-center text-[#1f3f21] mx-auto">
+                <Mail className="w-5 h-5" />
+              </div>
+              <h3 className="font-serif text-xl font-bold text-[#1f3f21]" style={{ fontFamily: "var(--font-cormorant), serif" }}>Submit Application Portal</h3>
+              <p className="text-[10px] text-[#2c2c2c]/60 max-w-xs mx-auto leading-relaxed font-semibold">
+                Launch your email request. On submit, your email client will launch with preloaded information to our board.
               </p>
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-4">
               
-              {/* Name */}
               <div>
-                <label className="block text-[10px] font-bold uppercase tracking-wider text-[#8c6239] mb-1.5">
-                  Full Name
-                </label>
+                <label className="block text-[9px] font-bold uppercase tracking-wider text-[#8c6239] mb-1">Full Name</label>
                 <input 
                   type="text" 
                   name="name" 
                   required
                   value={formData.name}
                   onChange={handleInputChange}
-                  placeholder="e.g. Rahul Sharma"
-                  className="w-full px-4 py-2.5 rounded-xl border border-[#8c6239]/15 bg-white text-xs font-semibold text-[#2c2c2c] focus:outline-none focus:border-[#1f3f21] focus:ring-1 focus:ring-[#1f3f21]"
+                  placeholder="Rahul Sharma"
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-[#8c6239]/15 bg-white text-xs font-semibold text-[#2c2c2c] focus:outline-none focus:border-[#1f3f21]"
                 />
               </div>
 
-              {/* Email & Phone grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-[10px] font-bold uppercase tracking-wider text-[#8c6239] mb-1.5">
-                    Email Address
-                  </label>
+                  <label className="block text-[9px] font-bold uppercase tracking-wider text-[#8c6239] mb-1">Email Address</label>
                   <input 
                     type="email" 
                     name="email" 
                     required
                     value={formData.email}
                     onChange={handleInputChange}
-                    placeholder="name@example.com"
-                    className="w-full px-4 py-2.5 rounded-xl border border-[#8c6239]/15 bg-white text-xs font-semibold text-[#2c2c2c] focus:outline-none focus:border-[#1f3f21] focus:ring-1 focus:ring-[#1f3f21]"
+                    placeholder="rahul@example.com"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-[#8c6239]/15 bg-white text-xs font-semibold text-[#2c2c2c] focus:outline-none focus:border-[#1f3f21]"
                   />
                 </div>
                 <div>
-                  <label className="block text-[10px] font-bold uppercase tracking-wider text-[#8c6239] mb-1.5">
-                    Phone Number
-                  </label>
+                  <label className="block text-[9px] font-bold uppercase tracking-wider text-[#8c6239] mb-1">Phone Number</label>
                   <input 
                     type="tel" 
                     name="phone" 
@@ -588,83 +568,117 @@ export default function InternshipPage() {
                     value={formData.phone}
                     onChange={handleInputChange}
                     placeholder="+91 98765 43210"
-                    className="w-full px-4 py-2.5 rounded-xl border border-[#8c6239]/15 bg-white text-xs font-semibold text-[#2c2c2c] focus:outline-none focus:border-[#1f3f21] focus:ring-1 focus:ring-[#1f3f21]"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-[#8c6239]/15 bg-white text-xs font-semibold text-[#2c2c2c] focus:outline-none focus:border-[#1f3f21]"
                   />
                 </div>
               </div>
 
-              {/* Qualification / Stream */}
               <div>
-                <label className="block text-[10px] font-bold uppercase tracking-wider text-[#8c6239] mb-1.5">
-                  Qualification / Stream
-                </label>
+                <label className="block text-[9px] font-bold uppercase tracking-wider text-[#8c6239] mb-1">Qualification Stream</label>
                 <select 
                   name="qualification"
                   value={formData.qualification}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-2.5 rounded-xl border border-[#8c6239]/15 bg-white text-xs font-semibold text-[#2c2c2c] focus:outline-none focus:border-[#1f3f21] focus:ring-1 focus:ring-[#1f3f21]"
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-[#8c6239]/15 bg-white text-xs font-semibold text-[#2c2c2c] focus:outline-none focus:border-[#1f3f21]"
                 >
                   <option value="MBA">MBA (Master of Business Administration)</option>
                   <option value="BBA">BBA (Bachelor of Business Administration)</option>
                   <option value="Commerce">Commerce / Finance Graduate</option>
                   <option value="Engineering">Engineering / Technology</option>
-                  <option value="Other">Other Streams / Arts / Science</option>
+                  <option value="Other">Other / Arts / Science</option>
                 </select>
               </div>
 
-              {/* College / Organization */}
               <div>
-                <label className="block text-[10px] font-bold uppercase tracking-wider text-[#8c6239] mb-1.5">
-                  Current College / Organization
-                </label>
+                <label className="block text-[9px] font-bold uppercase tracking-wider text-[#8c6239] mb-1">Current College / Organization</label>
                 <input 
                   type="text" 
                   name="college" 
                   required
                   value={formData.college}
                   onChange={handleInputChange}
-                  placeholder="e.g. IIT Patna / IIM Bangalore"
-                  className="w-full px-4 py-2.5 rounded-xl border border-[#8c6239]/15 bg-white text-xs font-semibold text-[#2c2c2c] focus:outline-none focus:border-[#1f3f21] focus:ring-1 focus:ring-[#1f3f21]"
+                  placeholder="IIT Patna / IIM Bangalore"
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-[#8c6239]/15 bg-white text-xs font-semibold text-[#2c2c2c] focus:outline-none focus:border-[#1f3f21]"
                 />
               </div>
 
-              {/* Statement of Interest */}
               <div>
-                <label className="block text-[10px] font-bold uppercase tracking-wider text-[#8c6239] mb-1.5">
-                  Brief Statement of Interest
-                </label>
+                <label className="block text-[9px] font-bold uppercase tracking-wider text-[#8c6239] mb-1">Statement of Interest</label>
                 <textarea 
                   name="statement" 
                   rows={3}
                   value={formData.statement}
                   onChange={handleInputChange}
                   placeholder="Why do you wish to join the VRNDA cooperative team?"
-                  className="w-full px-4 py-2.5 rounded-xl border border-[#8c6239]/15 bg-white text-xs font-semibold text-[#2c2c2c] focus:outline-none focus:border-[#1f3f21] focus:ring-1 focus:ring-[#1f3f21] resize-none"
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-[#8c6239]/15 bg-white text-xs font-semibold text-[#2c2c2c] focus:outline-none focus:border-[#1f3f21] resize-none"
                 />
               </div>
 
-              {/* Action buttons */}
-              <div className="flex gap-4 pt-2 font-bold uppercase tracking-wider text-xs">
-                <button 
-                  type="button" 
-                  onClick={() => setIsModalOpen(false)}
-                  className="w-1/2 py-3 rounded-xl border border-[#8c6239]/15 text-[#2c2c2c]/70 hover:bg-black/5 transition-colors text-center"
-                >
-                  Cancel
-                </button>
-                <button 
-                  type="submit"
-                  className="w-1/2 py-3 rounded-xl bg-[#1f3f21] text-white hover:bg-[#8c6239] transition-colors text-center"
-                >
-                  Submit
-                </button>
-              </div>
+              <button 
+                type="submit"
+                className="w-full py-3 bg-[#1f3f21] text-white text-xs font-bold uppercase tracking-wider rounded-xl hover:bg-[#8c6239] transition-colors"
+              >
+                Submit & Email Application
+              </button>
 
             </form>
           </div>
-        </div>
-      )}
 
+          {/* Associated Organizations */}
+          <div className="space-y-6 pt-4 border-t border-[#8c6239]/10">
+            <div className="text-center space-y-1">
+              <h3 className="font-serif text-lg font-bold text-[#1f3f21]" style={{ fontFamily: "var(--font-cormorant), serif" }}>Associated Organizations</h3>
+              <div className="w-12 h-0.5 bg-[#8c6239]/20 mx-auto" />
+            </div>
+
+            <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 pt-2">
+              {[
+                { name: "Akshaya Patra", desc: "Cooperative Kitchens" },
+                { name: "Vasudha", desc: "Organic Dairy Farms" },
+                { name: "Goloka", desc: "Sattvic Products" },
+                { name: "Madhava's", desc: "Healthy Lifestyle" },
+                { name: "Maghava's Eco Village", desc: "Sustainable Living" }
+              ].map((org) => (
+                <div key={org.name} className="px-5 py-3 rounded-2xl border border-[#8c6239]/15 bg-white/70 backdrop-blur shadow-sm text-center min-w-[150px] flex flex-col justify-center gap-0.5 hover:border-[#1f3f21] hover:-translate-y-0.5 transition-all duration-200">
+                  <span className="font-serif text-xs font-extrabold text-[#1f3f21]">{org.name}</span>
+                  <span className="text-[7px] uppercase tracking-widest text-[#8c6239] font-bold">{org.desc}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Contact Details Footer */}
+          <div className="pt-6 border-t border-[#8c6239]/10 grid grid-cols-1 md:grid-cols-4 gap-6 text-xs text-left font-semibold text-[#2c2c2c]/70">
+            <div className="space-y-1">
+              <span className="text-[9px] font-bold uppercase tracking-wider text-[#8c6239] block">Location</span>
+              <p>Vrndā PVS Kalakunj,</p>
+              <p>Opposite MG Road,</p>
+              <p>Mangalore - 575003</p>
+            </div>
+            <div className="space-y-1">
+              <span className="text-[9px] font-bold uppercase tracking-wider text-[#8c6239] block">Call Us</span>
+              <p className="text-sm font-bold text-[#1f3f21]">+91 94814 11722</p>
+              <p className="text-[10px]">+91 74814 11722</p>
+            </div>
+            <div className="space-y-1">
+              <span className="text-[9px] font-bold uppercase tracking-wider text-[#8c6239] block">Email Inquiry</span>
+              <p className="hover:text-[#1f3f21] transition-colors"><a href="mailto:vrndarootedindevotion@gmail.com">vrndarootedindevotion@gmail.com</a></p>
+            </div>
+            <div className="space-y-1">
+              <span className="text-[9px] font-bold uppercase tracking-wider text-[#8c6239] block">Web Portal</span>
+              <p className="hover:text-[#1f3f21] transition-colors"><a href="https://www.vrndaonline.com" target="_blank" rel="noopener noreferrer">www.vrndaonline.com</a></p>
+            </div>
+          </div>
+
+          <div className="text-center pt-2">
+            <span className="font-serif text-sm italic font-semibold text-[#8c6239]" style={{ fontFamily: "var(--font-cormorant), serif" }}>
+              "Learn. Contribute. Build the Future."
+            </span>
+          </div>
+
+        </section>
+
+      </div>
     </main>
   );
 }
