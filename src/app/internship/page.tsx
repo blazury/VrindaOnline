@@ -648,35 +648,13 @@ export default function InternshipPage() {
                 { name: "Vasudha", desc: "Organic Dairy Farms" },
                 { name: "Goloka", desc: "Sattvic Products" },
                 { name: "Madhava's", desc: "Healthy Lifestyle" },
-                { name: "Madhava's Eco Village", desc: "Sustainable Living" }
+                { name: "Madhava's Eco Village" }
               ].map((org) => (
                 <div key={org.name} className="px-5 py-3 rounded-2xl border border-[#8c6239]/15 bg-white shadow-sm text-center min-w-[150px] flex flex-col justify-center gap-0.5 hover:border-[#1f3f21] hover:-translate-y-0.5 transition-all duration-200">
                   <span className="font-serif text-xs font-extrabold text-[#1f3f21]">{org.name}</span>
-                  <span className="text-[7px] uppercase tracking-widest text-[#8c6239] font-bold">{org.desc}</span>
+                  {org.desc && <span className="text-[7px] uppercase tracking-widest text-[#8c6239] font-bold">{org.desc}</span>}
                 </div>
               ))}
-            </div>
-          </div>
-
-          {/* Contact Details Footer */}
-          <div className="pt-6 border-t border-[#8c6239]/10 grid grid-cols-1 md:grid-cols-4 gap-6 text-xs text-left font-semibold text-[#2c2c2c]/70">
-            <div className="space-y-1">
-              <span className="text-[9px] font-bold uppercase tracking-wider text-[#8c6239] block">Location</span>
-              <p>Vrndā PVS Kalakunj,</p>
-              <p>Opposite MG Road,</p>
-              <p>Mangalore - 575003</p>
-            </div>
-            <div className="space-y-1">
-              <span className="text-[9px] font-bold uppercase tracking-wider text-[#8c6239] block">Call Us</span>
-              <p className="text-sm font-bold text-[#1f3f21]">+91 94814 11722</p>
-            </div>
-            <div className="space-y-1">
-              <span className="text-[9px] font-bold uppercase tracking-wider text-[#8c6239] block">Email Inquiry</span>
-              <p className="hover:text-[#1f3f21] transition-colors"><a href="mailto:vrndarootedindevotion@gmail.com">vrndarootedindevotion@gmail.com</a></p>
-            </div>
-            <div className="space-y-1">
-              <span className="text-[9px] font-bold uppercase tracking-wider text-[#8c6239] block">Web Portal</span>
-              <p className="hover:text-[#1f3f21] transition-colors"><a href="https://www.vrndaonline.com" target="_blank" rel="noopener noreferrer">www.vrndaonline.com</a></p>
             </div>
           </div>
 
