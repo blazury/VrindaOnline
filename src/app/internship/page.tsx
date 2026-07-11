@@ -20,9 +20,6 @@ import {
   UserCheck,
   Mail,
   X,
-  Compass,
-  Zap,
-  Globe,
   Sparkles
 } from "lucide-react";
 
@@ -90,12 +87,13 @@ export default function InternshipPage() {
       className={`${cormorant.variable} ${inter.variable} relative min-h-screen bg-transparent antialiased text-[#2c2c2c]`}
       style={{ fontFamily: "var(--font-inter), sans-serif" }}
     >
-      {/* Sunlit Forest & Stone Arch Background (Page 3 Background in PDF) - Fix bg-fixed on mobile */}
+      {/* Sunlit Forest & Stone Arch Background (Page 3 Background in PDF) - Fix bg-fixed rendering bugs on mobile */}
       <div 
         className="fixed inset-0 -z-10 bg-cover bg-center bg-scroll md:bg-fixed transition-all duration-700" 
         style={{ backgroundImage: "url('/images/bg_combined.jpg')" }}
       />
-      <div className="fixed inset-0 -z-10 bg-[#faf8f5]/90 backdrop-blur-[4px]" />
+      {/* Fixed backdrop overlay: removed backdrop-blur filter to fix mobile WebKit gray patch rendering bugs */}
+      <div className="fixed inset-0 -z-10 bg-[#faf8f5]/92" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 relative z-10 space-y-16">
         
@@ -127,6 +125,7 @@ export default function InternshipPage() {
             <span className="text-[10px] font-bold text-[#8c6239] tracking-widest uppercase block mt-1">
               An Initiative by ISKCON Mangalore
             </span>
+            {/* CTA Scroll trigger in the master header */}
             <button 
               onClick={handleScrollToForm}
               className="mt-3.5 inline-flex items-center gap-2 px-5 py-2.5 bg-[#1f3f21] hover:bg-[#8c6239] text-[#f7f2e9] text-[10px] font-bold uppercase tracking-widest rounded-xl transition-all duration-300 shadow-sm"
@@ -163,6 +162,7 @@ export default function InternshipPage() {
               <p className="text-sm leading-relaxed text-[#2c2c2c]/85 font-semibold">
                 We create meaningful value for customers, communities and future business leaders.
               </p>
+              {/* Hero bottom scroll CTA */}
               <div className="pt-2">
                 <button 
                   onClick={handleScrollToForm}
@@ -399,7 +399,7 @@ export default function InternshipPage() {
 
           </div>
 
-          {/* Mentor Profile Editorial Card - Changed vector silhouette to actual photo */}
+          {/* Mentor Profile Editorial Card */}
           <div className="rounded-[2.5rem] border border-[#8c6239]/15 bg-white/70 p-6 md:p-8 shadow-md max-w-4xl mx-auto border-l-4 border-l-[#1f3f21] backdrop-blur">
             <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-center">
               
