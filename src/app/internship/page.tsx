@@ -648,7 +648,7 @@ export default function InternshipPage() {
                 { name: "Vasudha", desc: "Organic Dairy Farms" },
                 { name: "Goloka", desc: "Sattvic Products" },
                 { name: "Madhava's", desc: "Healthy Lifestyle" },
-                { name: "Maghava's Eco Village", desc: "Sustainable Living" }
+                { name: "Madhava's Eco Village", desc: "Sustainable Living" }
               ].map((org) => (
                 <div key={org.name} className="px-5 py-3 rounded-2xl border border-[#8c6239]/15 bg-white shadow-sm text-center min-w-[150px] flex flex-col justify-center gap-0.5 hover:border-[#1f3f21] hover:-translate-y-0.5 transition-all duration-200">
                   <span className="font-serif text-xs font-extrabold text-[#1f3f21]">{org.name}</span>
@@ -669,7 +669,6 @@ export default function InternshipPage() {
             <div className="space-y-1">
               <span className="text-[9px] font-bold uppercase tracking-wider text-[#8c6239] block">Call Us</span>
               <p className="text-sm font-bold text-[#1f3f21]">+91 94814 11722</p>
-              <p className="text-[10px]">+91 74814 11722</p>
             </div>
             <div className="space-y-1">
               <span className="text-[9px] font-bold uppercase tracking-wider text-[#8c6239] block">Email Inquiry</span>
