@@ -637,13 +637,13 @@ export default function InternshipPage() {
 
           {/* Associated Organizations - Rendered via optimized official logos banner */}
           <div className="space-y-4 pt-4 border-t border-[#8c6239]/10">
-            <div className="relative w-full aspect-[5462/768] max-w-5xl mx-auto rounded-2xl overflow-hidden border border-[#8c6239]/15 bg-white p-1 sm:p-2 shadow-sm">
+            <div className="relative w-full aspect-square max-w-md mx-auto rounded-2xl overflow-hidden border border-[#8c6239]/15 bg-white p-2 sm:p-3 shadow-sm">
               <Image 
-                src="/images/partner_logos.png" 
+                src="/images/partner_logos.jpg" 
                 alt="Associated Organizations: Akshaya Patra, Vasudha, Goloka, Madhava's, Madhava's Eco Village"
                 fill
                 priority
-                className="object-contain"
+                className="object-contain p-2"
               />
             </div>
           </div>
