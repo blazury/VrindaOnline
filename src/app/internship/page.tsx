@@ -635,26 +635,16 @@ export default function InternshipPage() {
             </form>
           </div>
 
-          {/* Associated Organizations */}
-          <div className="space-y-6 pt-4 border-t border-[#8c6239]/10">
-            <div className="text-center space-y-1">
-              <h3 className="font-serif text-lg font-bold text-[#1f3f21]" style={{ fontFamily: "var(--font-cormorant), serif" }}>Associated Organizations</h3>
-              <div className="w-12 h-0.5 bg-[#8c6239]/20 mx-auto" />
-            </div>
-
-            <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 pt-2">
-              {[
-                { name: "Akshaya Patra", desc: "Cooperative Kitchens" },
-                { name: "Vasudha", desc: "Organic Dairy Farms" },
-                { name: "Goloka", desc: "Sattvic Products" },
-                { name: "Madhava's", desc: "Healthy Lifestyle" },
-                { name: "Madhava's Eco Village" }
-              ].map((org) => (
-                <div key={org.name} className="px-5 py-3 rounded-2xl border border-[#8c6239]/15 bg-white shadow-sm text-center min-w-[150px] flex flex-col justify-center gap-0.5 hover:border-[#1f3f21] hover:-translate-y-0.5 transition-all duration-200">
-                  <span className="font-serif text-xs font-extrabold text-[#1f3f21]">{org.name}</span>
-                  {org.desc && <span className="text-[7px] uppercase tracking-widest text-[#8c6239] font-bold">{org.desc}</span>}
-                </div>
-              ))}
+          {/* Associated Organizations - Rendered via optimized official logos banner */}
+          <div className="space-y-4 pt-4 border-t border-[#8c6239]/10">
+            <div className="relative w-full aspect-[5462/768] max-w-5xl mx-auto rounded-2xl overflow-hidden border border-[#8c6239]/15 bg-white p-1 sm:p-2 shadow-sm">
+              <Image 
+                src="/images/partner_logos.png" 
+                alt="Associated Organizations: Akshaya Patra, Vasudha, Goloka, Madhava's, Madhava's Eco Village"
+                fill
+                priority
+                className="object-contain"
+              />
             </div>
           </div>
 
