@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { CartProvider } from "@/context/CartContext";
 import CartDrawer from "@/components/CartDrawer";
+import { Analytics } from "@vercel/analytics/next";
 
 const inter = Inter({
   variable: "--font-geist-sans",
@@ -49,6 +50,7 @@ export default function RootLayout({
           </main>
           <Footer />
         </CartProvider>
+        <Analytics />
       </body>
     </html>
   );
